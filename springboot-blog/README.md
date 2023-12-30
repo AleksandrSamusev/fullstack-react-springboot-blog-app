@@ -47,12 +47,12 @@ The specification for the project can be viewed using [Swagger Editor.](https://
 To do this, you need to go to the editor's website and import the contents of the file openapi.json
 
 
-![IDEA-fragment](mainApp/src/main/resources/static/images/openapi.jpeg)
+![IDEA-fragment](mainapp/src/main/resources/static/images/openapi.jpeg)
 
 
 ## Blog Database ER-diagram
 
-![er-diagram](mainApp/src/main/resources/static/images/erDiagram.jpeg)
+![er-diagram](mainapp/src/main/resources/static/images/erDiagram.jpeg)
 
 ## Endpoints
 
