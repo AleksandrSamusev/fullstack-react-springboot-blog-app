@@ -28,6 +28,8 @@ public class ArticleShortDto {
     @NotBlank(message = "Content cannot be blank")
     private String content;
 
+    private String image;
+
     @NotNull(message = "Author cannot be null")
     private UserShortDto author;
     private LocalDateTime published;

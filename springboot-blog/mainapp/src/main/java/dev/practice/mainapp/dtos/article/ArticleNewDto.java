@@ -24,5 +24,7 @@ public class ArticleNewDto {
     @Length(max = 30000, message = "Content length should be 30000 chars max")
     private String content;
 
+    private String image;
+
     private Set<TagNewDto> tags;
 }
