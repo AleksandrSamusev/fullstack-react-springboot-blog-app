@@ -1,7 +1,7 @@
 export const HeroComponent = () => {
     return (
         <div>
-            <div className="d-none d-lg-block">
+            <div className="d-none d-lg-block ">
                 <div className="row g-0 mt-5">
                     <div className="col-sm-6 col-md-6">
                         <div>

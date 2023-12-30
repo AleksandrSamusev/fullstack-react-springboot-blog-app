@@ -2,7 +2,7 @@ import {CarouselCard} from "./CarouselCard";
 
 export const Carousel = () => {
     return (
-        <div id="carouselExampleAutoplaying" className="carousel slide"
+        <div id="carouselExampleAutoplaying" className="carousel slide border shadow-lg"
              data-bs-ride="carousel" style={{marginTop: '50px'}}>
             <div className="carousel-inner">
                 <div className="carousel-item active">
