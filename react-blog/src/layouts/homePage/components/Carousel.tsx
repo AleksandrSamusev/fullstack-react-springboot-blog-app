@@ -1,5 +1,6 @@
 import {CarouselCard} from "./CarouselCard";
 
+
 export const Carousel = () => {
     return (
         <div id="carouselExampleAutoplaying" className="carousel slide border shadow-lg"
