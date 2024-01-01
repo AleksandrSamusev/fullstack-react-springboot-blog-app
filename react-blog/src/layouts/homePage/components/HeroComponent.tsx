@@ -5,7 +5,7 @@ export const HeroComponent = () => {
                 <div className="row g-0 mt-5">
                     <div className="col-sm-6 col-md-6">
                         <div>
-                            <img className="image-left" src={require('../../Images/PublicImages/left.jpg')}/>
+                            <img className="image-left" src={require('../../../Images/PublicImages/left.jpg')}/>
                         </div>
                     </div>
                     <div className="col-4 col-md-4 container d-flex justify-content-center
@@ -36,7 +36,7 @@ export const HeroComponent = () => {
                     </div>
                     <div className="col-sm-6 col-md-6">
                         <div>
-                            <img className="image-right" src={require('../../Images/PublicImages/right.jpg')}
+                            <img className="image-right" src={require('../../../Images/PublicImages/right.jpg')}
                                  alt="right"/>
                         </div>
                     </div>
@@ -48,7 +48,7 @@ export const HeroComponent = () => {
                     <div className="m-2">
                         <div>
                             <div>
-                                <img className="image-left" src={require('../../Images/PublicImages/left.jpg')}/>
+                                <img className="image-left" src={require('../../../Images/PublicImages/left.jpg')}/>
                             </div>
                             <div className="mt-2">
                                 <h1>What have you been reading?</h1>
@@ -62,7 +62,7 @@ export const HeroComponent = () => {
                         </div>
                         <div className="m-2">
                             <div>
-                                <img className="image-right" src={require('../../Images/PublicImages/right.jpg')} alt="right"/>
+                                <img className="image-right" src={require('../../../Images/PublicImages/right.jpg')} alt="right"/>
                             </div>
                             <div className="mt-2">
                             <h1>Our collection is always changing!</h1>

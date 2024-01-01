@@ -15,7 +15,7 @@ export const CarouselCard = () => {
                     <a className="btn main-color btn-lg text-white mt-4 " href="#">Sign In</a>
                 </div>
                 <div className='col '>
-                    <img src={require('../../Images/ArticlesImages/curiosity.png')}
+                    <img src={require('../../../Images/ArticlesImages/curiosity.png')}
                          alt='rover'/>
                 </div>
             </div>
