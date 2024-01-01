@@ -20,6 +20,6 @@ public class FileToBase64StringConverter {
                         .getResource(inputFilePath))
                 .getFile());
         byte[] fileContent = FileUtils.readFileToByteArray(inputFile);
-        return Base64.getEncoder().encodeToString(fileContent);
+        return "data:image/png;base64," + Base64.getEncoder().encodeToString(fileContent);
     }
 }

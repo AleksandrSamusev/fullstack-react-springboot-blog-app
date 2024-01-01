@@ -8,8 +8,7 @@ export const HeroComponent = () => {
                             <img className="image-left" src={require('../../../Images/PublicImages/left.jpg')}/>
                         </div>
                     </div>
-                    <div className="col-4 col-md-4 container d-flex justify-content-center
-                                     align-items-center">
+                    <div className="col-4 col-md-4 container d-flex justify-content-center align-items-center">
                         <div className="ml-2">
                             <h1 style={{fontFamily: 'Tahoma', fontSize: '48px'}} >What have you been reading?</h1>
                             <p className="lead mt-4" style={{fontFamily: "Arial", fontSize: '18px', opacity: 0.7}}>
