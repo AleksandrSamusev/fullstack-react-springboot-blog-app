@@ -3,7 +3,7 @@ class ArticleModel {
     title: string;
     content: string;
     image?: string;
-    author: string;
+    author: any;
     published: string;
     likes: number;
     views: number;

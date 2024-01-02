@@ -73,3 +73,4 @@ CREATE TABLE IF NOT EXISTS articles_tags
     tag_id     BIGINT REFERENCES tags (tag_id),
     CONSTRAINT articles_tags_pk PRIMARY KEY (article_id, tag_id)
 );
+

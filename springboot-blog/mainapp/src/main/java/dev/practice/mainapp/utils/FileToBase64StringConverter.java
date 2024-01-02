@@ -10,7 +10,7 @@ import java.util.Objects;
 public class FileToBase64StringConverter {
 
     public static void main(String[] args) throws IOException {
-        System.out.println(imageToBase64("curiosity.png"));
+        System.out.println(imageToBase64("hackers.png"));
     }
 
     public static String imageToBase64(String filename) throws IOException {
