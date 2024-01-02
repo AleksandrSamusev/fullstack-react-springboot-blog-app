@@ -2,6 +2,7 @@ import {CarouselCard} from "./CarouselCard";
 import {useState, useEffect} from "react";
 import ArticleModel from "../../../models/ArticleModel";
 import articleModel from "../../../models/ArticleModel";
+import {Spinner} from "../../utils/Spinner";
 
 
 export const Carousel = () => {
@@ -11,16 +12,16 @@ export const Carousel = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         const fetchArticles = async () => {
             const baseUrl: string = "http://localhost:8080/api/v1/public/articles";
 
-            const url:string = `${baseUrl}?from=0&size=3`;
+            const url: string = `${baseUrl}?from=0&size=3`;
 
             const response = await fetch(url);
 
-            if(!response.ok) {
-                throw  new Error('Something went wrong!');
+            if (!response.ok) {
+                throw new Error('Something went wrong!');
             }
             const responseData = await response.json();
 
@@ -41,22 +42,20 @@ export const Carousel = () => {
             setArticles(loadedArticles);
             setIsLoading(false);
         };
-        fetchArticles().catch((error:any) => {
+        fetchArticles().catch((error: any) => {
             setIsLoading(false);
             setHttpError(error.message);
         })
     }, []);
 
-    if(isLoading) {
-        return(
-            <div className="container m-5">
-                <p>Loading...</p>
-            </div>
+    if (isLoading) {
+        return (
+            <Spinner/>
         )
     }
 
-    if(httpError) {
-        return(
+    if (httpError) {
+        return (
             <div className="container m-5">
                 <p>{httpError}</p>
             </div>
@@ -64,31 +63,31 @@ export const Carousel = () => {
     }
 
     return (
-        <div id="carouselExampleAutoplaying" className="carousel slide border shadow-lg"
+        <div id="carouselExampleInterval" className="carousel slide shadow-lg"
              data-bs-ride="carousel" style={{marginTop: '50px'}}>
-            <div className="carousel-inner">
+            <div className="carousel-inner" data-bs-interval="5000">
                 <div className="carousel-item active">
-                    {articles.slice(0,1).map(article => (
+                    {articles.slice(0, 1).map(article => (
                         <CarouselCard article={article} key={article.articleId}/>
                     ))}
                 </div>
-                <div className="carousel-item">
-                    {articles.slice(1,2).map(article => (
+                <div className="carousel-item" data-bs-interval="5000">
+                    {articles.slice(1, 2).map(article => (
                         <CarouselCard article={article} key={article.articleId}/>
                     ))}
                 </div>
-                <div className="carousel-item">
-                    {articles.slice(2,3).map(article => (
+                <div className="carousel-item" data-bs-interval="5000">
+                    {articles.slice(2, 3).map(article => (
                         <CarouselCard article={article} key={article.articleId}/>
                     ))}
                 </div>
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
                     data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
             </button>
-            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
                     data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
