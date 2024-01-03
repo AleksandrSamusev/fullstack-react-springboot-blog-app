@@ -11,7 +11,9 @@ import dev.practice.mainapp.utils.Validations;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -44,11 +46,15 @@ public class ArticlePublicServiceImpl implements ArticlePublicService {
     }
 
     @Override
-    public List<ArticleShortDto> getAllArticles(Integer from, Integer size) {
-        PageRequest pageable = PageRequest.of(from / size, size);
-
-        List<Article> articles = articleRepository.findAllByStatusOrderByPublishedDesc(
-                ArticleStatus.PUBLISHED, pageable);
+    public List<ArticleShortDto> getAllArticles(Integer from, Integer size, String text) {
+        PageRequest pageable = PageRequest.of(from, size);
+        List<Article> articles = new ArrayList<>();
+        if(text==null) {
+            articles = articleRepository.findAllByStatusOrderByPublishedDesc(
+                    ArticleStatus.PUBLISHED, pageable);
+        } else {
+            articles = articleRepository.findByText(text);
+        }
 
         List<String> uris = createListOfUris(articles);
         List<StatisticRecord> responses = sendRequestToStatistic(statsClient, uris);
@@ -105,6 +111,11 @@ public class ArticlePublicServiceImpl implements ArticlePublicService {
                 .map(ArticleMapper::toArticleShortDto)
                 .sorted(Comparator.comparing(ArticleShortDto::getPublished))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer countAllArticles() {
+        return articleRepository.findAll().size();
     }
 
     private void createRecordAndSave(HttpServletRequest request) {
