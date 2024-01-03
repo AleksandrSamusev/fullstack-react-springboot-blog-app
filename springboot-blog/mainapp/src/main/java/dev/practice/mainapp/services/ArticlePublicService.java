@@ -10,13 +10,11 @@ import java.util.List;
 public interface ArticlePublicService {
     ArticleShortDto getArticleById(Long articleId, HttpServletRequest request) throws JsonProcessingException;
 
-    List<ArticleShortDto> getAllArticles(Integer from, Integer size, String text);
+    List<ArticleShortDto> getAllArticles(Integer from, Integer size);
 
     List<ArticleShortDto> getAllArticlesByUserId(Long userId, Integer from, Integer size);
 
     ArticleShortDto likeArticle(Long articleId);
 
     List<ArticleShortDto> getAllArticlesByTag(Long tagId);
-
-    Integer countAllArticles();
 }

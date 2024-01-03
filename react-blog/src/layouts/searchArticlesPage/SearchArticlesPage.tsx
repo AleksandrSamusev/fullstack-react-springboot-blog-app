@@ -20,31 +20,23 @@ export const SearchArticlesPage = () => {
 
     useEffect(() => {
         const fetchArticles = async () => {
-            const baseUrl: string = "http://localhost:8080/api/v1/public/articles";
-            const countUrl: string = "http://localhost:8080/api/v1/public/articles/count-all";
-
-            let url: string;
-
+            const baseUrl: string = "http://localhost:8080/api/v1/public/rest/articles";
+            let url: string = '';
             if (searchUrl === '') {
-                url = `${baseUrl}?from=${currentPage - 1}&size=${articlesPerPage}`;
+                url = `${baseUrl}?page=${currentPage - 1}&size=${articlesPerPage}`;
             } else {
-                url = baseUrl + searchUrl;
+                let searchWithPage = searchUrl.replace('<pageNumber>', `${currentPage - 1}`);
+                url = baseUrl + searchWithPage;
             }
-
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Something went wrong!');
             }
-            const responseData = await response.json();
-            const responseAll = await fetch(countUrl);
-            if (!responseAll.ok) {
-                throw new Error('Something went wrong!');
-            }
-            const responseAllData = await responseAll.text();
-            let count: number = Number(responseAllData);
+            const responseJson = await response.json();
+            const responseData = responseJson._embedded.articles;
 
-            setTotalAmountOfArticles(count);
-            searchUrl === '' ? setTotalPages(Math.round(count / articlesPerPage)) : setTotalPages(1);
+            setTotalAmountOfArticles(responseJson.page.totalElements);
+            setTotalPages(responseJson.page.totalPages);
 
             const loadedArticles: ArticleModel[] = [];
 
@@ -54,7 +46,7 @@ export const SearchArticlesPage = () => {
                     title: responseData[key].title,
                     content: responseData[key].content,
                     image: responseData[key].image,
-                    author: responseData[key].author,
+                    /*author: responseData[key].author,*/
                     published: responseData[key].published,
                     likes: responseData[key].likes,
                     views: responseData[key].views
@@ -87,21 +79,22 @@ export const SearchArticlesPage = () => {
     }
 
     const searchHandleChange = () => {
+        setCurrentPage(1);
         if (search === '') {
             setSearchUrl('');
         } else {
-            setSearchUrl(`?text=${search}&from=0&size=${articlesPerPage}`);
+            setSearchUrl(`/search/findByText?text=${search}&page=<pageNumber>&size=${articlesPerPage}`);
 
         }
     }
 
     const searchKeydownHandleChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        setCurrentPage(1);
         if (event.code === 'Enter') {
             if (search === '') {
                 setSearchUrl('');
             } else {
-                setSearchUrl(`?text=${search}&from=0&size=${articlesPerPage}`);
-
+                setSearchUrl(`/search/findByText?text=${search}&page=<pageNumber>&size=${articlesPerPage}`);
             }
         }
     }
@@ -166,15 +159,27 @@ export const SearchArticlesPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="mt-3">
-                        <h5>Number of results: ({totalAmountOfArticles})</h5>
-                    </div>
-                    <p>
-                        {indexOfFirstArticle + 1} to {lastItem} of {totalAmountOfArticles} items:
-                    </p>
-                    {articles.map(article => (
-                        <SearchArticle article={article} key={article.articleId}/>
-                    ))}
+                    {totalAmountOfArticles > 0 ?
+                        <>
+                            <div className="mt-3">
+                                <h5>Number of results: ({totalAmountOfArticles})</h5>
+                            </div>
+                            <p>
+                                {indexOfFirstArticle + 1} to {lastItem} of {totalAmountOfArticles} items:
+                            </p>
+                            {articles.map(article => (
+                                <SearchArticle article={article} key={article.articleId}/>
+                            ))}
+                        </>
+                        :
+                        <div className="m-5">
+                            <h3>
+                                Cant find what you are looking for?
+                            </h3>
+                            <a type="button" href="#" className="btn main-color btn-md px-4 me-md-2
+                            fw-bold text-white">Library services</a>
+                        </div>
+                    }
                     {totalPages > 1 &&
                         <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate}/>
                     }
