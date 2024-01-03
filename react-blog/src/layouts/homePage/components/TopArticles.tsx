@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 export const TopArticles = () => {
     return (
         /*        <div className='p-5 mb-4 bg-dark header'>
@@ -23,9 +25,9 @@ export const TopArticles = () => {
                         most
                         interesting articles from authors from all over the world.
                     </p>
-                    <a type='button' className='btn main-color btn-lg text-white mt-3 shadow-lg' href='#'>
+                    <Link type='button' className='btn main-color btn-lg text-white mt-3 shadow-lg' to='/search'>
                         Explore All Articles
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

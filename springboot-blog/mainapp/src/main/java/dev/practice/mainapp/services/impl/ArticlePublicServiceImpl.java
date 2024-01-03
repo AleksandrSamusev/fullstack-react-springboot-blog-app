@@ -46,15 +46,11 @@ public class ArticlePublicServiceImpl implements ArticlePublicService {
     }
 
     @Override
-    public List<ArticleShortDto> getAllArticles(Integer from, Integer size, String text) {
+    public List<ArticleShortDto> getAllArticles(Integer from, Integer size) {
         PageRequest pageable = PageRequest.of(from, size);
         List<Article> articles = new ArrayList<>();
-        if(text==null) {
             articles = articleRepository.findAllByStatusOrderByPublishedDesc(
                     ArticleStatus.PUBLISHED, pageable);
-        } else {
-            articles = articleRepository.findByText(text);
-        }
 
         List<String> uris = createListOfUris(articles);
         List<StatisticRecord> responses = sendRequestToStatistic(statsClient, uris);
@@ -111,11 +107,6 @@ public class ArticlePublicServiceImpl implements ArticlePublicService {
                 .map(ArticleMapper::toArticleShortDto)
                 .sorted(Comparator.comparing(ArticleShortDto::getPublished))
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public Integer countAllArticles() {
-        return articleRepository.findAll().size();
     }
 
     private void createRecordAndSave(HttpServletRequest request) {
