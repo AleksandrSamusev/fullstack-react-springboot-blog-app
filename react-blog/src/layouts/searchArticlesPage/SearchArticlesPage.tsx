@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {Spinner} from "../utils/Spinner";
 import {SearchArticle} from "./components/SearchArticle";
@@ -15,14 +15,22 @@ export const SearchArticlesPage = () => {
     const [articlesPerPage] = useState(5);
     const [totalAmountOfArticles, setTotalAmountOfArticles] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [search, setSearch] = useState('');
+    const [searchUrl, setSearchUrl] = useState('');
 
     useEffect(() => {
         const fetchArticles = async () => {
             const baseUrl: string = "http://localhost:8080/api/v1/public/articles";
             const countUrl: string = "http://localhost:8080/api/v1/public/articles/count-all";
 
+            let url: string;
 
-            const url: string = `${baseUrl}?from=${currentPage - 1}&size=${articlesPerPage}`;
+            if (searchUrl === '') {
+                url = `${baseUrl}?from=${currentPage - 1}&size=${articlesPerPage}`;
+            } else {
+                url = baseUrl + searchUrl;
+            }
+
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Something went wrong!');
@@ -36,7 +44,8 @@ export const SearchArticlesPage = () => {
             let count: number = Number(responseAllData);
 
             setTotalAmountOfArticles(count);
-            setTotalPages(Math.round(count / articlesPerPage));
+            searchUrl === '' ? setTotalPages(Math.round(count / articlesPerPage)) : setTotalPages(1);
+
             const loadedArticles: ArticleModel[] = [];
 
             for (const key in responseData) {
@@ -59,8 +68,8 @@ export const SearchArticlesPage = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-        window.scrollTo(0,0);
-    }, [currentPage]);
+        window.scrollTo(0, 0);
+    }, [currentPage, searchUrl]);
 
 
     if (isLoading) {
@@ -75,6 +84,26 @@ export const SearchArticlesPage = () => {
                 <p>{httpError}</p>
             </div>
         )
+    }
+
+    const searchHandleChange = () => {
+        if (search === '') {
+            setSearchUrl('');
+        } else {
+            setSearchUrl(`?text=${search}&from=0&size=${articlesPerPage}`);
+
+        }
+    }
+
+    const searchKeydownHandleChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.code === 'Enter') {
+            if (search === '') {
+                setSearchUrl('');
+            } else {
+                setSearchUrl(`?text=${search}&from=0&size=${articlesPerPage}`);
+
+            }
+        }
     }
 
     const indexOfLastArticle: number = currentPage * articlesPerPage;
@@ -93,8 +122,10 @@ export const SearchArticlesPage = () => {
                         <div className="col-6">
                             <div className="d-flex">
                                 <input className="form-control me-2" type="search"
-                                       placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-outline-success">
+                                       placeholder="Search" aria-labelledby="Search"
+                                       onChange={e => setSearch(e.target.value)}
+                                       onKeyDown={searchKeydownHandleChange}/>
+                                <button className="btn btn-outline-success" onClick={() => searchHandleChange()}>
                                     Search
                                 </button>
                             </div>
