@@ -88,16 +88,16 @@ export const SearchArticlesPage = () => {
         }
     }
 
-    const searchKeydownHandleChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
+/*    const searchKeydownHandleChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
         setCurrentPage(1);
-        if (event.code === 'Enter') {
+        if (event.key === 'Enter') {
             if (search === '') {
                 setSearchUrl('');
             } else {
                 setSearchUrl(`/search/findByText?text=${search}&page=<pageNumber>&size=${articlesPerPage}`);
             }
         }
-    }
+    }*/
 
     const indexOfLastArticle: number = currentPage * articlesPerPage;
     const indexOfFirstArticle: number = indexOfLastArticle - articlesPerPage;
@@ -117,7 +117,7 @@ export const SearchArticlesPage = () => {
                                 <input className="form-control me-2" type="search"
                                        placeholder="Search" aria-labelledby="Search"
                                        onChange={e => setSearch(e.target.value)}
-                                       onKeyDown={searchKeydownHandleChange}/>
+                                       /*onKeyDown={searchKeydownHandleChange}*//>
                                 <button className="btn btn-outline-success" onClick={() => searchHandleChange()}>
                                     Search
                                 </button>
