@@ -4,12 +4,13 @@ import {TagComponent} from "../../homePage/components/TagComponent";
 import tagModel from "../../../models/TagModel";
 import TagModel from "../../../models/TagModel";
 
-export const SearchArticle: React.FC<{ article: ArticleModel }> = (props) => {
+export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }> = (props) => {
 
     const [tags, setTags] =
         useState<TagModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
+    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         const fetchTags = async () => {
@@ -41,6 +42,7 @@ export const SearchArticle: React.FC<{ article: ArticleModel }> = (props) => {
             setHttpError(error.message);
         })
     }, []);
+
 
     return (
         <div className="card mt-3 shadow p-3 mb-3 bg-body rounded">
@@ -78,7 +80,7 @@ export const SearchArticle: React.FC<{ article: ArticleModel }> = (props) => {
                         </a>
                         <div className="text-end">
                             {tags.map(tag => (
-                                <TagComponent tag={tag} key={tag.tagId}/>
+                                <TagComponent tag={tag} key={tag.name} changeSearchUrl={props.changeSearchUrl}/>
                             ))}
                         </div>
                     </div>
