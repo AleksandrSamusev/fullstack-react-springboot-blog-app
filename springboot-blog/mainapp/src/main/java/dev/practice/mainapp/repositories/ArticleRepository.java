@@ -26,5 +26,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
             " OR lower(a.content) LIKE lower(concat('%', :text, '%'))")
     Page<Article> findByText(@RequestParam("text") String text, Pageable pageable);
 
+    @Query(value = "SELECT a.* FROM articles AS a" +
+            " LEFT JOIN articles_tags t on a.article_id = t.article_id" +
+            " LEFT JOIN tags t2 on t.tag_id = t2.tag_id" +
+            " WHERE t2.name = :tag", nativeQuery = true)
+    Page<Article> findAllByTag(@RequestParam("tag") String tag, Pageable pageable);
 
 }

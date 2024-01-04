@@ -74,3 +74,8 @@ CREATE TABLE IF NOT EXISTS articles_tags
     CONSTRAINT articles_tags_pk PRIMARY KEY (article_id, tag_id)
 );
 
+/*SELECT * FROM articles AS a
+LEFT JOIN articles_tags t on a.article_id = t.article_id
+LEFT JOIN tags t2 on t.tag_id = t2.tag_id
+WHERE t2.name = 'turkey';*/
+

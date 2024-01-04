@@ -5,7 +5,7 @@ import {SearchArticle} from "./components/SearchArticle";
 import ArticleModel from "../../models/ArticleModel";
 import {Pagination} from "../utils/Pagination";
 
-export const SearchArticlesPage = () => {
+export const SearchArticlesPage = (props) => {
 
     const [articles, setArticles] =
         useState<ArticleModel[]>([]);
@@ -19,11 +19,14 @@ export const SearchArticlesPage = () => {
     const [searchUrl, setSearchUrl] = useState('');
 
     useEffect(() => {
+
+
+
         const fetchArticles = async () => {
             const baseUrl: string = "http://localhost:8080/api/v1/public/rest/articles";
             let url: string = '';
             if (searchUrl === '') {
-                url = `${baseUrl}?page=${currentPage - 1}&size=${articlesPerPage}`;
+                url = `${baseUrl}?sort=published,desc&page=${currentPage - 1}&size=${articlesPerPage}`;
             } else {
                 let searchWithPage = searchUrl.replace('<pageNumber>', `${currentPage - 1}`);
                 url = baseUrl + searchWithPage;
@@ -84,7 +87,6 @@ export const SearchArticlesPage = () => {
             setSearchUrl('');
         } else {
             setSearchUrl(`/search/findByText?text=${search}&page=<pageNumber>&size=${articlesPerPage}`);
-
         }
     }
 
@@ -106,6 +108,10 @@ export const SearchArticlesPage = () => {
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+    const changeSearchUrl = (tag: string) => {
+        setCurrentPage(1);
+        setSearchUrl(`/search/findAllByTag?tag=${tag}&page=<pageNumber>&size=${articlesPerPage}`);
+    }
 
     return (
         <div>
@@ -168,7 +174,9 @@ export const SearchArticlesPage = () => {
                                 {indexOfFirstArticle + 1} to {lastItem} of {totalAmountOfArticles} items:
                             </p>
                             {articles.map(article => (
-                                <SearchArticle article={article} key={article.articleId}/>
+                                <SearchArticle article={article}
+                                               key={article.articleId}
+                                               changeSearchUrl={changeSearchUrl} />
                             ))}
                         </>
                         :
