@@ -5,6 +5,7 @@ import {Footer} from "./layouts/navbarAndFooter/Footer";
 import {HomePage} from "./layouts/homePage/HomePage";
 import {SearchArticlesPage} from "./layouts/searchArticlesPage/SearchArticlesPage";
 import {Redirect, Route, Switch} from "react-router";
+import {ArticlePage} from "./layouts/ArticlePage/ArticlePage";
 
 export const App = () => {
     return (
@@ -20,6 +21,9 @@ export const App = () => {
                     </Route>
                     <Route path='/search'>
                         <SearchArticlesPage/>
+                    </Route>
+                    <Route path='/full-article/:articleId'>
+                        <ArticlePage/>
                     </Route>
                 </Switch>
             </div>
