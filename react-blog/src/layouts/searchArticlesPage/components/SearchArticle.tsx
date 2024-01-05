@@ -3,6 +3,8 @@ import ArticleModel from "../../../models/ArticleModel";
 import {TagComponent} from "../../homePage/components/TagComponent";
 import tagModel from "../../../models/TagModel";
 import TagModel from "../../../models/TagModel";
+import {Link} from "react-router-dom";
+import {truncate} from "node:fs";
 
 export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }> = (props) => {
 
@@ -44,6 +46,12 @@ export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }>
     }, []);
 
 
+    const cuttedContent = () => {
+        return props.article.content.length > 300 ? props.article.content.substring(0, 298) + " ..."
+            :
+            props.article.content;
+    }
+
     return (
         <div className="card mt-3 shadow p-3 mb-3 bg-body rounded">
             <div className="row g-0 ">
@@ -73,11 +81,12 @@ export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }>
                         </h5>*/}
                         <p className="card-text mb-4"
                            style={{fontFamily: 'Arial', fontSize: '16px', textAlign: 'justify'}}>
-                            {props.article.content}
+                            {cuttedContent()}
                         </p>
-                        <a className="btn btn-md main-color text-white shadow-lg" href="#">
-                            View details
-                        </a>
+                        <Link className="btn btn-md main-color text-white shadow-lg"
+                              to={`/full-article/${props.article.articleId}`}>
+                            Read full article
+                        </Link>
                         <div className="text-end">
                             {tags.map(tag => (
                                 <TagComponent tag={tag} key={tag.name} changeSearchUrl={props.changeSearchUrl}/>
