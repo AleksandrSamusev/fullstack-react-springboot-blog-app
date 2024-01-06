@@ -4,7 +4,6 @@ import {TagComponent} from "../../homePage/components/TagComponent";
 import tagModel from "../../../models/TagModel";
 import TagModel from "../../../models/TagModel";
 import {Link} from "react-router-dom";
-import {truncate} from "node:fs";
 
 export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }> = (props) => {
 
@@ -12,7 +11,6 @@ export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }>
         useState<TagModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
-    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
         const fetchTags = async () => {
@@ -37,8 +35,6 @@ export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }>
             setTags(loadedTags);
             setIsLoading(false);
         };
-
-
         fetchTags().catch((error: any) => {
             setIsLoading(false);
             setHttpError(error.message);
