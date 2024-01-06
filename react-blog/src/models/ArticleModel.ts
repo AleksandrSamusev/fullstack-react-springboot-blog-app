@@ -9,7 +9,7 @@ class ArticleModel {
     views: number;
 
     constructor(articleId: number, title: string, content: string, image: string,
-                /*author: string,*/ published: string, likes: number, views: number) {
+                /*author: any,*/ published: string, likes: number, views: number) {
         this.articleId = articleId;
         this.title = title;
         this.content = content;
