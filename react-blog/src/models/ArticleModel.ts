@@ -3,18 +3,18 @@ class ArticleModel {
     title: string;
     content: string;
     image?: string;
-/*    author: any;*/
+    author?: any;
     published: string;
     likes: number;
     views: number;
 
     constructor(articleId: number, title: string, content: string, image: string,
-                /*author: any,*/ published: string, likes: number, views: number) {
+                author: any, published: string, likes: number, views: number) {
         this.articleId = articleId;
         this.title = title;
         this.content = content;
         this.image = image;
-/*        this.author = author;*/
+        this.author = author;
         this.published = published;
         this.likes = likes;
         this.views = views;

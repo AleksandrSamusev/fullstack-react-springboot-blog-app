@@ -5,6 +5,6 @@ public class PassEncoder {
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        System.out.println(encoder.encode("default"));
+        System.out.println(encoder.encode("user2"));
     }
 }
