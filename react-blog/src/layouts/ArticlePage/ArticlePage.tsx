@@ -106,7 +106,7 @@ export const ArticlePage = () => {
                     </div>
                     <div className="col-4 col-md-6 container">
                         <div className="ml-2">
-                            <h2 className="mb-3" style={{fontFamily: 'Tahoma', fontSize: '60px'}}>{article?.title}</h2>
+                            <h2 className="mb-3" style={{fontFamily: 'Arial', fontSize: '60px'}}>{article?.title}</h2>
                             <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}}>published
                                 by: {article?.author.username}</p>
                             <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}}>published
@@ -166,7 +166,7 @@ export const ArticlePage = () => {
                 </div>
                 <div className="mt-4">
                     <div className="ml-2">
-                        <h2 style={{fontFamily: 'Tahoma', fontSize: '45px'}}>{article?.title}</h2>
+                        <h2 style={{fontFamily: 'Arial', fontSize: '45px'}}>{article?.title}</h2>
                         <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}}>published
                             by: {article?.author.username}
                         </p>
