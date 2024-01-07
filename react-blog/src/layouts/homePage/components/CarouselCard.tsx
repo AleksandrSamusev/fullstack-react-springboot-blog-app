@@ -8,10 +8,22 @@ export const CarouselCard: React.FC<{ article: ArticleModel }> = (props) => {
             <div className='row'>
                 <div className='col'>
                     <h1 className='mt-5'
-                        style={{fontFamily: 'Tahoma', fontSize: '40px'}}>{props.article.title}</h1>
-                    <p style={{fontFamily: "Arial", fontSize: '18px', opacity: 0.8, textAlign: "justify",
-                    paddingLeft: '2px', paddingRight: '20px'}}
-                       className="mt-4">{props.article.content}
+                        style={{
+                            fontFamily: 'Tahoma',
+                            fontSize: '40px'
+                        }}>
+                        {props.article.title}
+                    </h1>
+                    <p
+                        style={{
+                            fontFamily: "Arial",
+                            fontSize: '18px',
+                            opacity: 0.8,
+                            textAlign: "justify",
+                            paddingLeft: '2px',
+                            paddingRight: '20px'
+                        }}
+                        className="mt-4">{props.article.content}
                     </p>
                     <div>
                         <a className="btn main-color text-white btn-lg mt-3 shadow-lg" href="#">Read Article</a>

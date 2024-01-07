@@ -24,6 +24,7 @@ export const SearchArticlesPage = (props) => {
 
         const fetchArticles = async () => {
             const baseUrl: string = "http://localhost:8080/api/v1/public/rest/articles";
+
             let url: string = '';
             if (searchUrl === '') {
                 url = `${baseUrl}?sort=published,desc&page=${currentPage - 1}&size=${articlesPerPage}`;
