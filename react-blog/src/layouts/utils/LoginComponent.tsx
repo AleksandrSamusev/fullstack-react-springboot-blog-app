@@ -1,6 +1,6 @@
 import {useState} from "react";
 import * as React from "react";
-import {loginApiCall} from "../../services/AuthService";
+import {loginApiCall, saveLoggedInUser, storeToken} from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,13 +11,19 @@ const LoginComponent = () => {
 
     const navigator = useNavigate();
 
-    function handleLoginForm(e) {
+    async function handleLoginForm(e) {
         e.preventDefault();
         const loginObj = {usernameOrEmail, password};
 
-        loginApiCall(loginObj).then(response => {
-            navigator("/home")
-            console.log(response.data);
+       await loginApiCall(loginObj).then(response => {
+
+            const token = "Bearer " + response.data.accessToken;
+            storeToken(token);
+            saveLoggedInUser(usernameOrEmail);
+
+            navigator("/home");
+            window.location.reload();
+
         }).catch(error => {
             console.error(error);
         })
