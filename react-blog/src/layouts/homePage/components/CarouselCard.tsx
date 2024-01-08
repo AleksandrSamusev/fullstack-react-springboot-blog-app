@@ -3,13 +3,20 @@ import ArticleModel from "../../../models/ArticleModel";
 
 
 export const CarouselCard: React.FC<{ article: ArticleModel }> = (props) => {
+
+    const cuttedContent = () => {
+        return props.article.content.length > 300 ? props.article.content.substring(0, 298) + " ..."
+            :
+            props.article.content;
+    }
+
     return (
-        <div className='container p-5 shadow-lg' style={{minHeight: '50vh'}}>
+        <div className='container p-5 shadow-lg' style={{minHeight: '54vh'}}>
             <div className='row'>
                 <div className='col'>
                     <h1 className='mt-5'
                         style={{
-                            fontFamily: 'Tahoma',
+                            fontFamily: 'arial',
                             fontSize: '40px'
                         }}>
                         {props.article.title}
@@ -23,7 +30,7 @@ export const CarouselCard: React.FC<{ article: ArticleModel }> = (props) => {
                             paddingLeft: '2px',
                             paddingRight: '20px'
                         }}
-                        className="mt-4">{props.article.content}
+                        className="mt-4">{cuttedContent()}
                     </p>
                     <div>
                         <a className="btn main-color text-white btn-lg mt-3 shadow-lg" href="#">Read Article</a>
