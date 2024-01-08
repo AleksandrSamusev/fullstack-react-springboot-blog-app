@@ -1,11 +1,16 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
-import {isUserLoggedIn} from "../../services/AuthService";
+import {NavLink, useNavigate} from "react-router-dom";
+import {isUserLoggedIn, logout} from "../../services/AuthService";
 
 export const Navbar = () => {
 
     const isAuth = isUserLoggedIn();
+    const navigator = useNavigate();
 
+    function handleLogout() {
+        logout();
+        navigator('/home');
+    }
 
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3 border shadow-lg'>
@@ -24,6 +29,10 @@ export const Navbar = () => {
                         <li className='nav-item'>
                             <NavLink className='nav-link' to='/search'>Search Articles</NavLink>
                         </li>
+
+                        {isAuth &&
+                            <NavLink className='nav-link' to='/dashboard'>My Dashboard</NavLink>
+                        }
                     </ul>
                     <ul className='navbar-nav ms-auto'>
                         {!isAuth ?
@@ -39,7 +48,7 @@ export const Navbar = () => {
                             :
                             <>
                                 <li className='nav-item m-1'>
-                                    <NavLink type='button' className='btn btn-outline-light' to='#'>Logout</NavLink>
+                                    <NavLink type='button' className='btn btn-outline-light' to='/home' onClick={handleLogout}>Logout</NavLink>
                                 </li>
                             </>
                         }
