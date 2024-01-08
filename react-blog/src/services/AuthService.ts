@@ -9,3 +9,20 @@ export function registerApiCall(registerObj) {
 export function loginApiCall(loginObj) {
     return axios.post(AUTH_REST_API_BASE_URL + '/login', loginObj);
 }
+
+export const storeToken = (token) => localStorage.setItem("token", token);
+
+export const getToken = () => localStorage.getItem("token");
+
+export const saveLoggedInUser = (username) => {
+    sessionStorage.setItem("authenticatedUser", username);
+}
+
+export const isUserLoggedIn = () => {
+    const username = sessionStorage.getItem("authenticatedUser");
+    return username != null;
+}
+
+export const getLoggedInUser = () => {
+    return sessionStorage.getItem("authenticatedUser");
+}

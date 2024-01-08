@@ -1,7 +1,12 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import {isUserLoggedIn} from "../../services/AuthService";
 
 export const Navbar = () => {
+
+    const isAuth = isUserLoggedIn();
+
+
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3 border shadow-lg'>
             <div className='container-fluid'>
@@ -21,12 +26,24 @@ export const Navbar = () => {
                         </li>
                     </ul>
                     <ul className='navbar-nav ms-auto'>
-                        <li className='nav-item m-1'>
-                            <NavLink type='button' className='btn btn-outline-light' to='/register'>Register</NavLink>
-                        </li>
-                        <li className='nav-item m-1'>
-                            <NavLink type='button' className='btn btn-outline-light' to='/login'>Login</NavLink>
-                        </li>
+                        {!isAuth ?
+                            <>
+                                <li className='nav-item m-1'>
+                                    <NavLink type='button' className='btn btn-outline-light'
+                                             to='/register'>Register</NavLink>
+                                </li>
+                                <li className='nav-item m-1'>
+                                    <NavLink type='button' className='btn btn-outline-light' to='/login'>Login</NavLink>
+                                </li>
+                            </>
+                            :
+                            <>
+                                <li className='nav-item m-1'>
+                                    <NavLink type='button' className='btn btn-outline-light' to='#'>Logout</NavLink>
+                                </li>
+                            </>
+                        }
+
                     </ul>
                 </div>
             </div>
