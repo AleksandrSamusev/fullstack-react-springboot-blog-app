@@ -1,6 +1,7 @@
 package dev.practice.mainapp.dtos.article;
 
 import dev.practice.mainapp.dtos.comment.CommentFullDto;
+import dev.practice.mainapp.dtos.like.LikeFullDto;
 import dev.practice.mainapp.dtos.tag.TagShortDto;
 import dev.practice.mainapp.dtos.user.UserShortDto;
 import dev.practice.mainapp.models.ArticleStatus;
@@ -43,9 +44,9 @@ public class ArticleFullDto {
     @NotNull(message = "Status cannot be null")
     @Enumerated(EnumType.STRING)
     private ArticleStatus status;
-    private Long likes;
     private Long views;
     private Set<CommentFullDto> comments;
+    private Set<LikeFullDto> likes;
     private Set<TagShortDto> tags;
 
 }
