@@ -4,6 +4,9 @@ import articleModel from "../../models/ArticleModel";
 import {Spinner} from "../utils/Spinner";
 import CommentModel from "../../models/CommentModel";
 import {LatestComments} from "./LatestComments";
+import LikeModel from "../../models/LikeModel";
+import tagModel from "../../models/TagModel";
+import likeModel from "../../models/LikeModel";
 
 export const ArticlePage = () => {
 
@@ -13,7 +16,6 @@ export const ArticlePage = () => {
     //Comment state
     const [comments, setComments] = useState<CommentModel[]>([]);
     const [isLoadingComments, setIsLoadingComments] = useState(true);
-
     const articleId = (window.location.pathname).split('/')[2];
 
 
@@ -38,12 +40,14 @@ export const ArticlePage = () => {
                 views: responseJson.views,
                 tags: responseJson.tags
             };
+
             setArticle(loadedArticle);
             setIsLoading(false);
         };
         fetchArticle().catch((error: any) => {
             setIsLoading(false);
             setHttpError(error.message);
+
         })
     }, []);
 
@@ -157,7 +161,7 @@ export const ArticlePage = () => {
                             backgroundColor: '#E36414',
                             borderRadius: '5px'
                         }}
-                        className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes}
+                        className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes.length}
                     </p>
                 </div>
                 <LatestComments comments={comments} articleId={article?.articleId} mobile={false}/>
@@ -228,7 +232,7 @@ export const ArticlePage = () => {
                             backgroundColor: '#E36414',
                             borderRadius: '5px'
                         }}
-                        className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes}
+                        className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes.length}
                     </p>
                 </div>
                 <LatestComments comments={comments} articleId={article?.articleId} mobile={true}/>

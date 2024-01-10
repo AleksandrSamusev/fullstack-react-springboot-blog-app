@@ -5,9 +5,9 @@ class ArticleModel {
     image?: string;
     author?: any;
     published: string;
-    likes: any;
+    likes?: any;
     views: number;
-    tags?:any
+    tags?:any;
 
     constructor(articleId: number, title: string, content: string, image: string,
                 author: any, published: string, likes: any, views: number, tags: any) {

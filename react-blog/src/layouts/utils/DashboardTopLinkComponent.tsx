@@ -1,19 +1,29 @@
 import {Link} from "react-router-dom";
+import {useState} from "react";
 
-export  const  DashboardTopLinkComponent = (props) => {
+export const DashboardTopLinkComponent = (props) => {
+
+    const [clicked, setClicked] = useState(false);
+
+    const handleClick = () => {
+        setClicked(!clicked)
+    }
+
+
     return (
-        <div className="col-2 text-center shadow-lg"
+        <div className={clicked ? "col-2 text-center shadow-lg pt-4" : "col-2 text-center pt-4"}
              style={{
-                 backgroundColor: 'white',
-                 borderRadius: '10px',
-                 paddingTop: '40px'
-             }}>
+                 borderBottomLeftRadius: clicked ? '15px' : '',
+                 borderBottomRightRadius: clicked ? '15px' : '',
+             }}
+        >
             <Link to='#'
+                  onClick={handleClick}
                   style={{
                       fontFamily: 'Roboto',
-                      fontSize: '26px',
+                      fontSize: '22px',
                       textDecoration: 'none',
-                      fontWeight: '700',
+                      fontWeight: clicked ? '500' : '400',
                       color: 'black'
                   }}>
                 {props.title}
