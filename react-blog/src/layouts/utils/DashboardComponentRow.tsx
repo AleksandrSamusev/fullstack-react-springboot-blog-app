@@ -15,12 +15,16 @@ export const DashboardComponentRow = (props) => {
                     fontWeight: '700'
                 }}>{props.rowValue}</h3>
             </div>
-            <div className="col-md-3 text-end pt-3">
+            <div className="col-md-3 text-end">
+                <div className="mt-2 pe-4">
                 <span style={{
                     border: '1px solid black',
-                    padding: '5px 20px',
+                    marginTop: "auto",
+                    marginBottom: "auto",
+                    padding: '5px 15px',
                     borderRadius: '5px'
                 }}>details</span>
+                </div>
             </div>
         </div>
     );

@@ -1,10 +1,8 @@
 package dev.practice.mainapp.config;
 
+import dev.practice.mainapp.dtos.like.LikeFullDto;
 import dev.practice.mainapp.dtos.user.UserFullDto;
-import dev.practice.mainapp.models.Article;
-import dev.practice.mainapp.models.Comment;
-import dev.practice.mainapp.models.Tag;
-import dev.practice.mainapp.models.User;
+import dev.practice.mainapp.models.*;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -21,5 +19,7 @@ public class RestConfiguration implements RepositoryRestConfigurer {
         config.exposeIdsFor(Comment.class);
         config.exposeIdsFor(User.class);
         config.exposeIdsFor(UserFullDto.class);
+        config.exposeIdsFor(Like.class);
+        config.exposeIdsFor(LikeFullDto.class);
     }
 }
