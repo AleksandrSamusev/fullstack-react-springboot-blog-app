@@ -24,7 +24,7 @@ export const App = () => {
                         <Route path="/full-article/:articleId" element={<ArticlePage/>}></Route>
                         <Route path="/register" element={<RegisterComponent/>}></Route>
                         <Route path="/login" element={<LoginComponent/>}></Route>
-                        <Route path="/dashboard" element={<UserDashboardPage/>}></Route>
+                        <Route path="/users/:userId/dashboard" element={<UserDashboardPage/>}></Route>
                     </Routes>
 
                 </div>
