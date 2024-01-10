@@ -14,6 +14,8 @@ public interface ArticlePrivateService {
 
     Optional<?> getArticleById(String login, Long articleId);
 
+    String likeArticle(String login, Long articleId, Long userId);
+
     void deleteArticle(String login, Long articleId);
 
     List<ArticleFullDto> getAllArticlesByUserId(String login, Integer from, Integer size, String status);

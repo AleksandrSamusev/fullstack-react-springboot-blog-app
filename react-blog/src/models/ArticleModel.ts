@@ -5,12 +5,12 @@ class ArticleModel {
     image?: string;
     author?: any;
     published: string;
-    likes: number;
+    likes: any;
     views: number;
     tags?:any
 
     constructor(articleId: number, title: string, content: string, image: string,
-                author: any, published: string, likes: number, views: number, tags: any) {
+                author: any, published: string, likes: any, views: number, tags: any) {
         this.articleId = articleId;
         this.title = title;
         this.content = content;

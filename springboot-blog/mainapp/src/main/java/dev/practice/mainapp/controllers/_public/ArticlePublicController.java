@@ -39,10 +39,6 @@ public class ArticlePublicController {
         return new ResponseEntity<>(articleService.getAllArticlesByUserId(userId, from, size), HttpStatus.OK);
     }
 
-    @PatchMapping("/{articleId}/like")
-    public ResponseEntity<?> likeArticle(@PathVariable Long articleId, Long userId) {
-        return new ResponseEntity<>(articleService.likeArticle(articleId, userId), HttpStatus.OK);
-    }
 
     @GetMapping("/tags/{tagId}")
     public ResponseEntity<List<ArticleShortDto>> getAllArticlesByTag(@PathVariable Long tagId) {

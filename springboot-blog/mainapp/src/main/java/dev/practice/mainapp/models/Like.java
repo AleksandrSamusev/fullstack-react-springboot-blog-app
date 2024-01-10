@@ -30,6 +30,6 @@ public class Like {
     private User user;
 
     @Column(name = "created", nullable = false)
-    private LocalDateTime created;
+    private LocalDateTime created = LocalDateTime.now();
 
 }

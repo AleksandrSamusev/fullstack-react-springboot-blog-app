@@ -45,7 +45,8 @@ export const UserDashboardPage = () => {
                 receivedMessages: responseJson.receivedMessages,
                 articles: responseJson.articles,
                 comments: responseJson.comments,
-                about: responseJson.about
+                about: responseJson.about,
+                likes: responseJson.likes
             };
             setUser(loadedUser);
             setIsLoading(false);

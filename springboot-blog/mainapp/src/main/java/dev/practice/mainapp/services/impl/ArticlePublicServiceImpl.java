@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ArticlePublicServiceImpl implements ArticlePublicService {
     private final ArticleRepository articleRepository;
-    private final LikeRepository likeRepository;
     private final StatsClient statsClient;
     private final Validations validations;
 
@@ -83,17 +82,7 @@ public class ArticlePublicServiceImpl implements ArticlePublicService {
         return ArticleMapper.toListArticleShort(savedArticles);
     }
 
-    @Override
-    public String likeArticle(Long articleId, Long userId) {
-        Article article = validations.checkArticleExist(articleId);
-        validations.checkArticleIsPublished(article);
-        User user = validations.checkUserExist(userId);
-        Like like = new Like();
-        like.setArticle(article);
-        like.setUser(user);
-        likeRepository.save(like);
-        return "Like added";
-    }
+
 
     @Override
     public List<ArticleShortDto> getAllArticlesByTag(Long tagId) {

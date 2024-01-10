@@ -2,31 +2,25 @@ import {DashboardComponentRow} from "./DashboardComponentRow";
 
 export const DashboardComponent = (props) => {
 
-/*    const handleArticles = () => {
-        if(props.user.articles.size === 0) {
-            return '0'
-        } else {
-            return props.user.articles.size;
-        }
-    }
-
-    const handleComments = () => {
-        if(props.user.comments.size === 0) {
-            return '0'
-        } else {
-            return props.user.comments.size;
-        }
-    }
-
-    const handleSentMessages = () => {
-        if(props.user.sentMessages.size === 0) {
-            return '0'
-        } else {
-            return props.user.sentMessages.size;
-        }
-    }*/
-
     console.log(props.user.articles.length)
+
+    const getNumberOfLikes = () => {
+        let count: number = 0;
+        const articles = props.user.articles;
+        for(let i = 0; i<articles.length; i++) {
+            count = count + articles[i].likes.length;
+        }
+        return count;
+    }
+
+    const getNumberOfComments = () => {
+        let count: number = 0;
+        const articles = props.user.articles;
+        for(let i = 0; i<articles.length; i++) {
+            count = count + articles[i].comments.length;
+        }
+        return count;
+    }
 
     return (
         <div>
@@ -49,7 +43,7 @@ export const DashboardComponent = (props) => {
                 />
                 <DashboardComponentRow
                     rowTitle="Articles liked:"
-                    rowValue= "-1"
+                    rowValue= {props.user.likes.length}
                 />
                 <DashboardComponentRow
                     rowTitle="Comments posted:"
@@ -66,11 +60,11 @@ export const DashboardComponent = (props) => {
                 />
                 <DashboardComponentRow
                     rowTitle="Likes from other users:"
-                    rowValue= "-1"
+                    rowValue= {getNumberOfLikes()}
                 />
                 <DashboardComponentRow
                     rowTitle="Comments on my articles:"
-                    rowValue= "-1"
+                    rowValue= {getNumberOfComments()}
                 />
 
             </div>
