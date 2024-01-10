@@ -40,6 +40,14 @@ public class ArticlePrivateController {
                 HttpStatus.OK);
     }
 
+
+    @PatchMapping("/{articleId}/users/{userId}/like")
+    public ResponseEntity<?> likeArticle(@AuthenticationPrincipal UserDetails userDetails,
+                                         @PathVariable Long articleId,
+                                         @PathVariable Long userId) {
+        return new ResponseEntity<>(articleService.likeArticle(userDetails.getUsername(),articleId, userId), HttpStatus.OK);
+    }
+
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/{articleId}")
     public ResponseEntity<Object> getArticleById(@AuthenticationPrincipal UserDetails userDetails,

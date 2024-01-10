@@ -14,7 +14,5 @@ public interface ArticlePublicService {
 
     List<ArticleShortDto> getAllArticlesByUserId(Long userId, Integer from, Integer size);
 
-    String likeArticle(Long articleId, Long userId);
-
     List<ArticleShortDto> getAllArticlesByTag(Long tagId);
 }

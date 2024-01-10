@@ -21,19 +21,12 @@ const LoginComponent = () => {
             const role = response.data.role;
             const userId = response.data.userId;
 
-
-           console.log(token);
-           console.log(role);
-           console.log(userId);
-
-
             storeToken(token);
             saveLoggedInUser(userId, usernameOrEmail, role);
-
-            navigator("/home");
-
-            window.location.reload();
            console.log(token)
+            //navigator("/home");
+            //window.location.reload();
+
         }).catch(error => {
             console.error(error);
         })
