@@ -77,7 +77,7 @@ export const UserDashboardPage = () => {
                 <div className="col-3">
                     <DashboardInfoCard user={user}/>
                 </div>
-                <div className="col-md-7 offset-1">
+                <div className="col-md-8 ">
                     <div className="row" style={{height: '8vh'}}>
                         {titles.map(title => <DashboardTopLinkComponent title={title} key={title}/>)}
                     </div>
