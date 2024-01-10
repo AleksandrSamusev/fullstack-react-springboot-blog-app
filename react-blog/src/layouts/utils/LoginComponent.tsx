@@ -18,12 +18,22 @@ const LoginComponent = () => {
        await loginApiCall(loginObj).then(response => {
 
             const token = "Bearer " + response.data.accessToken;
+            const role = response.data.role;
+            const userId = response.data.userId;
+
+
+           console.log(token);
+           console.log(role);
+           console.log(userId);
+
+
             storeToken(token);
-            saveLoggedInUser(usernameOrEmail);
+            saveLoggedInUser(userId, usernameOrEmail, role);
 
             navigator("/home");
-            window.location.reload();
 
+            window.location.reload();
+           console.log(token)
         }).catch(error => {
             console.error(error);
         })

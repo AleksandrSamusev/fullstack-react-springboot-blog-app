@@ -9,7 +9,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/v1/admin")
