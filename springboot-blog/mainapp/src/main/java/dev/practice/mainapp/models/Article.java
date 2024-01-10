@@ -45,14 +45,14 @@ public class Article {
     @Column(nullable = false)
     private ArticleStatus status = ArticleStatus.CREATED;
 
-    @Column(name = "likes")
-    private Long likes;
-
     @Column(name = "views")
     private Long views;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
     private Set<Comment> comments;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
+    private Set<Like> likes;
 
     @ManyToMany
     @JoinTable(

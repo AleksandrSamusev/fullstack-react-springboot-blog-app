@@ -2,7 +2,9 @@ package dev.practice.mainapp.dtos.user;
 
 import dev.practice.mainapp.dtos.article.ArticleShortDto;
 import dev.practice.mainapp.dtos.comment.CommentShortDto;
+import dev.practice.mainapp.dtos.like.LikeFullDto;
 import dev.practice.mainapp.dtos.message.MessageFullDto;
+import dev.practice.mainapp.models.Like;
 import dev.practice.mainapp.models.Role;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -52,4 +54,5 @@ public class UserFullDto {
     private Set<MessageFullDto> receivedMessages = new HashSet<>();
     private Set<ArticleShortDto> articles = new HashSet<>();
     private Set<CommentShortDto> comments = new HashSet<>();
+    private Set<LikeFullDto> likes = new HashSet<>();
 }

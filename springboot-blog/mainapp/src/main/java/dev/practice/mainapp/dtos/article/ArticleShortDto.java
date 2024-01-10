@@ -1,6 +1,7 @@
 package dev.practice.mainapp.dtos.article;
 
 import dev.practice.mainapp.dtos.comment.CommentShortDto;
+import dev.practice.mainapp.dtos.like.LikeFullDto;
 import dev.practice.mainapp.dtos.tag.TagShortDto;
 import dev.practice.mainapp.dtos.user.UserShortDto;
 import jakarta.validation.constraints.NotBlank;
@@ -33,9 +34,9 @@ public class ArticleShortDto {
     @NotNull(message = "Author cannot be null")
     private UserShortDto author;
     private LocalDateTime published;
-    private Long likes;
     private Long views;
     private Set<CommentShortDto> comments;
     private Set<TagShortDto> tags;
+    private Set<LikeFullDto> likes;
 
 }

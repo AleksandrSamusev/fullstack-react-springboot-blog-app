@@ -6,6 +6,7 @@ import dev.practice.mainapp.dtos.article.ArticleShortDto;
 import dev.practice.mainapp.mappers.ArticleMapper;
 import dev.practice.mainapp.models.*;
 import dev.practice.mainapp.repositories.ArticleRepository;
+import dev.practice.mainapp.repositories.LikeRepository;
 import dev.practice.mainapp.services.ArticlePublicService;
 import dev.practice.mainapp.utils.Validations;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ArticlePublicServiceImpl implements ArticlePublicService {
     private final ArticleRepository articleRepository;
+    private final LikeRepository likeRepository;
     private final StatsClient statsClient;
     private final Validations validations;
 
@@ -82,15 +84,15 @@ public class ArticlePublicServiceImpl implements ArticlePublicService {
     }
 
     @Override
-    public ArticleShortDto likeArticle(Long articleId) {
+    public String likeArticle(Long articleId, Long userId) {
         Article article = validations.checkArticleExist(articleId);
         validations.checkArticleIsPublished(article);
-        Long likes = article.getLikes();
-        likes++;
-        article.setLikes(likes);
-        Article savedArticle = articleRepository.save(article);
-        log.info("Add like to article with ID = " + articleId);
-        return ArticleMapper.toArticleShortDto(savedArticle);
+        User user = validations.checkUserExist(userId);
+        Like like = new Like();
+        like.setArticle(article);
+        like.setUser(user);
+        likeRepository.save(like);
+        return "Like added";
     }
 
     @Override
