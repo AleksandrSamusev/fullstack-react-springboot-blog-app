@@ -4,6 +4,9 @@ import articleModel from "../../models/ArticleModel";
 import {Spinner} from "../utils/Spinner";
 import CommentModel from "../../models/CommentModel";
 import {LatestComments} from "./LatestComments";
+import LikeModel from "../../models/LikeModel";
+import tagModel from "../../models/TagModel";
+import likeModel from "../../models/LikeModel";
 
 export const ArticlePage = () => {
 
@@ -13,7 +16,6 @@ export const ArticlePage = () => {
     //Comment state
     const [comments, setComments] = useState<CommentModel[]>([]);
     const [isLoadingComments, setIsLoadingComments] = useState(true);
-
     const articleId = (window.location.pathname).split('/')[2];
 
 
@@ -35,14 +37,17 @@ export const ArticlePage = () => {
                 author: responseJson.author,
                 published: responseJson.published,
                 likes: responseJson.likes,
-                views: responseJson.views
+                views: responseJson.views,
+                tags: responseJson.tags
             };
+
             setArticle(loadedArticle);
             setIsLoading(false);
         };
         fetchArticle().catch((error: any) => {
             setIsLoading(false);
             setHttpError(error.message);
+
         })
     }, []);
 
@@ -111,30 +116,13 @@ export const ArticlePage = () => {
                                 by: {article?.author.username}</p>
                             <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}}>published
                                 on: {(article?.published.split(":")[0]) ? (article?.published.split(":")[0])
-                                    .substring(0, article?.published.split(":")[0].length - 3) : ''}</p>
-                            <div className="pt-3">
-                                <p
-                                    style={{
-                                        fontFamily: "Arial",
-                                        fontSize: '16px',
-                                        opacity: '0.8',
-                                        color: 'white',
-                                        backgroundColor: '#E36414',
-                                        borderRadius: '5px'
-                                    }}
-                                    className="lead d-inline me-3 p-2 border shadow-lg">Views - {article?.views}
-                                </p>
-                                <p
-                                    style={{
-                                        fontFamily: "Arial",
-                                        fontSize: '16px',
-                                        opacity: '0.8',
-                                        color: 'white',
-                                        backgroundColor: '#E36414',
-                                        borderRadius: '5px'
-                                    }}
-                                    className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes}
-                                </p>
+                                    .substring(0, article?.published.split(":")[0].length - 3) : ''}
+                            </p>
+                            <div className="text-end">
+                                {article?.tags?.map(tag => (
+                                    <a className="btn btn-sm btn-outline-dark shadow-sm m-2">{tag.name}
+                                    </a>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -154,8 +142,33 @@ export const ArticlePage = () => {
                     </div>
                 </div>
                 <hr/>
+                <div className="pt-2">
+                    <p
+                        style={{
+                            fontFamily: "Arial",
+                            fontSize: '14px',
+                            color: 'black',
+                            backgroundColor: '#E36414',
+                            borderRadius: '5px'
+                        }}
+                        className="lead d-inline me-3 p-2 border shadow-lg">Views - {article?.views}
+                    </p>
+                    <p
+                        style={{
+                            fontFamily: "Arial",
+                            fontSize: '14px',
+                            color: 'black',
+                            backgroundColor: '#E36414',
+                            borderRadius: '5px'
+                        }}
+                        className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes.length}
+                    </p>
+                </div>
                 <LatestComments comments={comments} articleId={article?.articleId} mobile={false}/>
             </div>
+
+            {/* Mobile*/}
+
             <div className="container d-lg-none mt-5">
                 <div className="d-flex justify-content-center align-items-center">
                     {article?.image ?
@@ -165,39 +178,29 @@ export const ArticlePage = () => {
                     }
                 </div>
                 <div className="mt-4">
-                    <div className="ml-2">
-                        <h2 style={{fontFamily: 'Arial', fontSize: '45px'}}>{article?.title}</h2>
-                        <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}}>published
-                            by: {article?.author.username}
+                    <div>
+                        <h2
+                            style={{
+                                fontFamily: 'Arial',
+                                fontSize: '45px'
+                            }}
+                        >
+                            {article?.title}
+                        </h2>
+                        <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}} className='mb-1'>
+                            published by: {article?.author.username}
                         </p>
-                        <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}}>published
-                            on: {(article?.published.split(":")[0]) ? (article?.published.split(":")[0])
+                        <p style={{fontFamily: "Arial", fontSize: '14px', fontWeight: '700'}} className='m-0'>
+                            published on: {(article?.published.split(":")[0]) ? (article?.published.split(":")[0])
                                 .substring(0, article?.published.split(":")[0].length - 3) : ''}
                         </p>
-                        <div className="pt-2 mb-4">
-                            <p
-                                style={{
-                                    fontFamily: "Arial",
-                                    fontSize: '12px',
-                                    opacity: '0.8',
-                                    color: 'black',
-                                    backgroundColor: '#E36414',
-                                    borderRadius: '5px'
-                                }}
-                                className="lead d-inline me-3 p-2 border shadow-lg">Views - {article?.views}
-                            </p>
-                            <p
-                                style={{
-                                    fontFamily: "Arial",
-                                    fontSize: '12px',
-                                    opacity: '0.8',
-                                    color: 'black',
-                                    backgroundColor: '#E36414',
-                                    borderRadius: '5px'
-                                }}
-                                className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes}
-                            </p>
+                        <div className="text-end mb-2">
+                            {article?.tags?.map(tag => (
+                                <a className="btn btn-sm btn-outline-dark shadow-sm m-2">{tag.name}
+                                </a>
+                            ))}
                         </div>
+
                         <p
                             style={{
                                 fontFamily: "Arial",
@@ -208,6 +211,30 @@ export const ArticlePage = () => {
                     </div>
                 </div>
                 <hr/>
+                <div className="pt-2 mb-4">
+                    <p
+                        style={{
+                            fontFamily: "Arial",
+                            fontSize: '12px',
+                            opacity: '0.8',
+                            color: 'black',
+                            backgroundColor: '#E36414',
+                            borderRadius: '5px'
+                        }}
+                        className="lead d-inline me-3 p-2 border shadow-lg">Views - {article?.views}
+                    </p>
+                    <p
+                        style={{
+                            fontFamily: "Arial",
+                            fontSize: '12px',
+                            opacity: '0.8',
+                            color: 'black',
+                            backgroundColor: '#E36414',
+                            borderRadius: '5px'
+                        }}
+                        className="lead d-inline me-3 p-2 border shadow-lg ">Likes - {article?.likes.length}
+                    </p>
+                </div>
                 <LatestComments comments={comments} articleId={article?.articleId} mobile={true}/>
             </div>
         </div>

@@ -95,6 +95,7 @@ public class AuthServiceImpl implements AuthService {
         JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
         jwtAuthResponse.setRole(role);
         jwtAuthResponse.setAccessToken(token);
+        userOptional.ifPresent(user -> jwtAuthResponse.setUserId(user.getUserId().toString()));
 
         return jwtAuthResponse;
     }

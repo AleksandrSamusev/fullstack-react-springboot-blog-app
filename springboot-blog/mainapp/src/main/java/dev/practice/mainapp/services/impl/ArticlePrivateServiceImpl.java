@@ -6,14 +6,8 @@ import dev.practice.mainapp.dtos.article.ArticleUpdateDto;
 import dev.practice.mainapp.exceptions.ActionForbiddenException;
 import dev.practice.mainapp.exceptions.InvalidParameterException;
 import dev.practice.mainapp.mappers.ArticleMapper;
-import dev.practice.mainapp.models.Article;
-import dev.practice.mainapp.models.ArticleStatus;
-import dev.practice.mainapp.models.Tag;
-import dev.practice.mainapp.models.User;
-import dev.practice.mainapp.repositories.ArticleRepository;
-import dev.practice.mainapp.repositories.CommentRepository;
-import dev.practice.mainapp.repositories.TagRepository;
-import dev.practice.mainapp.repositories.UserRepository;
+import dev.practice.mainapp.models.*;
+import dev.practice.mainapp.repositories.*;
 import dev.practice.mainapp.services.ArticlePrivateService;
 import dev.practice.mainapp.services.TagService;
 import dev.practice.mainapp.utils.Validations;
@@ -30,6 +24,7 @@ import java.util.Optional;
 @Slf4j
 public class ArticlePrivateServiceImpl implements ArticlePrivateService {
     private final ArticleRepository articleRepository;
+    private final LikeRepository likeRepository;
     private final UserRepository userRepository;
     private final TagRepository tagRepository;
     private final TagService tagService;
@@ -78,6 +73,18 @@ public class ArticlePrivateServiceImpl implements ArticlePrivateService {
         log.info("Article with id {} was updated", articleId);
         return ArticleMapper.toArticleFullDto(articleRepository.save(
                 ArticleMapper.toArticleFromUpdate(article, updateArticle)));
+    }
+
+    @Override
+    public String likeArticle(String login, Long articleId, Long userId) {
+        Article article = validations.checkArticleExist(articleId);
+        validations.checkArticleIsPublished(article);
+        User user = validations.checkUserExist(userId);
+        Like like = new Like();
+        like.setArticle(article);
+        like.setUser(user);
+        likeRepository.save(like);
+        return "Like added";
     }
 
     @Override

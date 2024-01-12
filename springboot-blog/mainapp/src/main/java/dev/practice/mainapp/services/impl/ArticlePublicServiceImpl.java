@@ -6,6 +6,7 @@ import dev.practice.mainapp.dtos.article.ArticleShortDto;
 import dev.practice.mainapp.mappers.ArticleMapper;
 import dev.practice.mainapp.models.*;
 import dev.practice.mainapp.repositories.ArticleRepository;
+import dev.practice.mainapp.repositories.LikeRepository;
 import dev.practice.mainapp.services.ArticlePublicService;
 import dev.practice.mainapp.utils.Validations;
 import jakarta.servlet.http.HttpServletRequest;
@@ -81,17 +82,7 @@ public class ArticlePublicServiceImpl implements ArticlePublicService {
         return ArticleMapper.toListArticleShort(savedArticles);
     }
 
-    @Override
-    public ArticleShortDto likeArticle(Long articleId) {
-        Article article = validations.checkArticleExist(articleId);
-        validations.checkArticleIsPublished(article);
-        Long likes = article.getLikes();
-        likes++;
-        article.setLikes(likes);
-        Article savedArticle = articleRepository.save(article);
-        log.info("Add like to article with ID = " + articleId);
-        return ArticleMapper.toArticleShortDto(savedArticle);
-    }
+
 
     @Override
     public List<ArticleShortDto> getAllArticlesByTag(Long tagId) {

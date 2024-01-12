@@ -20,10 +20,10 @@ public class ArticleMapper {
         article.setContent(dto.getContent());
         article.setImage(dto.getImage());
         article.setAuthor(user);
-        article.setLikes(0L);
         article.setViews(0L);
         article.setComments(new HashSet<>());
         article.setTags(new HashSet<>());
+        article.setLikes(new HashSet<>());
         return article;
     }
 
@@ -39,10 +39,11 @@ public class ArticleMapper {
         articleFullDto.setCreated(article.getCreated());
         articleFullDto.setPublished(article.getPublished());
         articleFullDto.setStatus(article.getStatus());
-        articleFullDto.setLikes(article.getLikes());
         articleFullDto.setViews(article.getViews());
         articleFullDto.setComments(article.getComments().stream()
                 .map(CommentMapper::toCommentFullDto).collect(Collectors.toSet()));
+        articleFullDto.setLikes(article.getLikes().stream()
+                .map(LikeMapper::toLikeFullDto).collect(Collectors.toSet()));
         articleFullDto.setTags(article.getTags().stream()
                 .map(TagMapper::toTagShortDto).collect(Collectors.toSet()));
 
@@ -58,10 +59,11 @@ public class ArticleMapper {
         articleShortDto.setImage(article.getImage());
         articleShortDto.setAuthor(UserMapper.toUserShortDto(article.getAuthor()));
         articleShortDto.setPublished(article.getPublished());
-        articleShortDto.setLikes(article.getLikes());
         articleShortDto.setViews(article.getViews());
         articleShortDto.setComments(article.getComments().stream()
                 .map(CommentMapper::toCommentShortDto).collect(Collectors.toSet()));
+        articleShortDto.setLikes(article.getLikes().stream()
+                .map(LikeMapper::toLikeFullDto).collect(Collectors.toSet()));
         articleShortDto.setTags(article.getTags().stream()
                 .map(TagMapper::toTagShortDto).collect(Collectors.toSet()));
 
@@ -72,7 +74,6 @@ public class ArticleMapper {
         article.setTitle(updateArticle.getTitle() == null ? article.getTitle() : updateArticle.getTitle().trim());
         article.setContent(updateArticle.getContent() == null ? article.getContent() : updateArticle.getContent());
         article.setImage(updateArticle.getImage() == null ? article.getImage() : updateArticle.getImage());
-        article.setLikes(0L);
         article.setComments(new HashSet<>());
         article.setStatus(ArticleStatus.CREATED);
         article.setPublished(null);

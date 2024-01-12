@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/private")
@@ -35,6 +35,7 @@ public class UserPrivateController {
                                                   @AuthenticationPrincipal UserDetails userDetails) {
         return new ResponseEntity<>(userService.updateUser(userId, dto, userDetails.getUsername()), HttpStatus.OK);
     }
+
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("/users/{userId}")

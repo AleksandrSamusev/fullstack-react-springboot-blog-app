@@ -66,4 +66,7 @@ public class User {
     @OneToMany(mappedBy = "commentAuthor")
     private Set<Comment> comments;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Like> likes;
+
 }

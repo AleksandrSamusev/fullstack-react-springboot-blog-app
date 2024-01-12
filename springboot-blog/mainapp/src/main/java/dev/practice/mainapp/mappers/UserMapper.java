@@ -27,6 +27,7 @@ public class UserMapper {
         dto.setComments(user.getComments().stream().map(CommentMapper::toCommentShortDto).collect(Collectors.toSet()));
         dto.setSentMessages(user.getSentMessages().stream().map(MessageMapper::toMessageFullDto)
                 .collect(Collectors.toSet()));
+        dto.setLikes(user.getLikes().stream().map(LikeMapper::toLikeFullDto).collect(Collectors.toSet()));
         dto.setReceivedMessages(user.getReceivedMessages().stream().map(MessageMapper::toMessageFullDto)
                 .collect(Collectors.toSet()));
         dto.setArticles(user.getArticles().stream().map(ArticleMapper::toArticleShortDto).collect(Collectors.toSet()));

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/private/articles")
@@ -38,6 +38,14 @@ public class ArticlePrivateController {
                                                         @RequestBody ArticleUpdateDto updateArticle) {
         return new ResponseEntity<>(articleService.updateArticle(userDetails.getUsername(), articleId, updateArticle),
                 HttpStatus.OK);
+    }
+
+
+    @PatchMapping("/{articleId}/users/{userId}/like")
+    public ResponseEntity<?> likeArticle(@AuthenticationPrincipal UserDetails userDetails,
+                                         @PathVariable Long articleId,
+                                         @PathVariable Long userId) {
+        return new ResponseEntity<>(articleService.likeArticle(userDetails.getUsername(),articleId, userId), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")

@@ -1,7 +1,19 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import {getLoggedInUserId, isUserLoggedIn, logout} from "../../services/AuthService";
 
-export const Navbar = () => {
+export const Navbar = (props) => {
+
+    const isAuth = isUserLoggedIn();
+    const navigator = useNavigate();
+
+    const userId = getLoggedInUserId();
+
+    function handleLogout() {
+        logout();
+        navigator('/home');
+    }
+
     return (
         <nav className='navbar navbar-expand-lg navbar-dark main-color py-3 border shadow-lg'>
             <div className='container-fluid'>
@@ -19,11 +31,30 @@ export const Navbar = () => {
                         <li className='nav-item'>
                             <NavLink className='nav-link' to='/search'>Search Articles</NavLink>
                         </li>
+
+                        {isAuth &&
+                            <NavLink className='nav-link' to={`/users/${userId}/dashboard`}>My Dashboard</NavLink>
+                        }
                     </ul>
                     <ul className='navbar-nav ms-auto'>
-                        <li className='nav-item m-1'>
-                            <a type='button' className='btn btn-outline-light' href='#'>Sign In</a>
-                        </li>
+                        {!isAuth ?
+                            <>
+                                <li className='nav-item m-1'>
+                                    <NavLink type='button' className='btn btn-outline-light'
+                                             to='/register'>Register</NavLink>
+                                </li>
+                                <li className='nav-item m-1'>
+                                    <NavLink type='button' className='btn btn-outline-light' to='/login'>Login</NavLink>
+                                </li>
+                            </>
+                            :
+                            <>
+                                <li className='nav-item m-1'>
+                                    <NavLink type='button' className='btn border text-white' to='/home' onClick={handleLogout}>Logout</NavLink>
+                                </li>
+                            </>
+                        }
+
                     </ul>
                 </div>
             </div>

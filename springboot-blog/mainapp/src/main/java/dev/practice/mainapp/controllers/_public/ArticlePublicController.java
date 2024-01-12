@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/public/articles")
@@ -39,10 +39,6 @@ public class ArticlePublicController {
         return new ResponseEntity<>(articleService.getAllArticlesByUserId(userId, from, size), HttpStatus.OK);
     }
 
-    @PatchMapping("/{articleId}/like")
-    public ResponseEntity<ArticleShortDto> likeArticle(@PathVariable Long articleId) {
-        return new ResponseEntity<>(articleService.likeArticle(articleId), HttpStatus.OK);
-    }
 
     @GetMapping("/tags/{tagId}")
     public ResponseEntity<List<ArticleShortDto>> getAllArticlesByTag(@PathVariable Long tagId) {
