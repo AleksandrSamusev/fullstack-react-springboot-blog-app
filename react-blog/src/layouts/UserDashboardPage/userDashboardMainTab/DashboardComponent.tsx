@@ -1,4 +1,5 @@
 import {DashboardComponentRow} from "./DashboardComponentRow";
+import {DashboardTitle} from "../DashboardTitle";
 
 export const DashboardComponent = (props) => {
 
@@ -24,16 +25,6 @@ export const DashboardComponent = (props) => {
 
     return (
         <div>
-            <div className="mt-5">
-                <h2 className="text-end pe-4"
-                    style={{
-                        fontFamily: 'Roboto',
-                        fontSize: '38px',
-                        fontWeight: '500'
-                    }}>
-                    Dashboard</h2>
-            </div>
-            <hr/>
             <div className="row g-0 pt-5 px-5 pb-5 mt-5 border shadow-lg"
                  style={{borderRadius: '10px'}}>
 
