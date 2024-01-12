@@ -1,10 +1,12 @@
-import {DashboardComponent} from "../utils/DashboardComponent";
+import {DashboardComponent} from "./userDashboardMainTab/DashboardComponent";
 import React, {useEffect, useState} from "react";
 import UserModel from "../../models/UserModel";
-import {DashboardTopLinkComponent} from "../utils/DashboardTopLinkComponent";
-import {DashboardInfoCard} from "../utils/DashboardInfoCard";
+import {DashboardTopLinkComponent} from "./DashboardTopLinkComponent";
+import {DashboardInfoCard} from "./DashboardInfoCard";
 import {Spinner} from "../utils/Spinner";
 import {getToken} from "../../services/AuthService";
+import {UserDashboardArticlesComponent} from "./userDashboardArticlesTab/UserDashboardArticlesComponent";
+import {DashboardTitle} from "./DashboardTitle";
 
 
 export const UserDashboardPage = () => {
@@ -21,7 +23,7 @@ export const UserDashboardPage = () => {
     useEffect(() => {
         const token = getToken();
         console.log(token)
-        const headers = { 'Authorization': `${token}`};
+        const headers = {'Authorization': `${token}`};
         console.log(headers)
 
         const fetchUser = async () => {
@@ -71,6 +73,8 @@ export const UserDashboardPage = () => {
         )
     }
 
+
+
     return (
         <div>
             <div className="row mb-5">
@@ -81,7 +85,10 @@ export const UserDashboardPage = () => {
                     <div className="row" style={{height: '8vh'}}>
                         {titles.map(title => <DashboardTopLinkComponent title={title} key={title}/>)}
                     </div>
-                    <DashboardComponent user={user}/>
+                    <DashboardTitle/>
+                    {/*          <DashboardComponent user={user}/>*/}
+                    <UserDashboardArticlesComponent/>
+
                 </div>
             </div>
         </div>
