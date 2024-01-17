@@ -9,7 +9,7 @@ import {UserDashboardArticlesComponent} from "./userDashboardArticlesTab/UserDas
 import {DashboardTitle} from "./DashboardTitle";
 
 
-export const UserDashboardPage = () => {
+export const UserDashboardPage = (props) => {
 
     const topMenuTitles = ["Dashboard", "Articles", "Messages", "Comments", "Likes", "Settings"];
 
@@ -17,6 +17,11 @@ export const UserDashboardPage = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
     const [titles, setTitles] = useState(topMenuTitles);
+
+    const [dashboardIsActive, setDashboardIsActive] = useState(false);
+    const [articlesIsActive, setArticlesIsActive] = useState(false);
+    const [messagesIsActive, setMessagesIsActive] = useState(false);
+    const [commentsIsActive, setCommentsIsActive] = useState(false);
 
     const userId = (window.location.pathname).split("/")[2];
 
@@ -74,7 +79,6 @@ export const UserDashboardPage = () => {
     }
 
 
-
     return (
         <div>
             <div className="row mb-5">
@@ -86,8 +90,16 @@ export const UserDashboardPage = () => {
                         {titles.map(title => <DashboardTopLinkComponent title={title} key={title}/>)}
                     </div>
                     <DashboardTitle/>
-                    {/*          <DashboardComponent user={user}/>*/}
-                    <UserDashboardArticlesComponent/>
+
+                    {props.clickedTitle === 'Articles' ?
+                        <DashboardComponent user={user}/>
+
+                        :
+                        <UserDashboardArticlesComponent user={user}/>
+                    }
+
+
+
 
                 </div>
             </div>

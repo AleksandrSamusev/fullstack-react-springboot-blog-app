@@ -1,5 +1,4 @@
 import {DashboardComponentRow} from "./DashboardComponentRow";
-import {DashboardTitle} from "../DashboardTitle";
 
 export const DashboardComponent = (props) => {
 
