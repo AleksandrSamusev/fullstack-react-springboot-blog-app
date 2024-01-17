@@ -9,6 +9,9 @@ import {UserDashboardArticlesComponent} from "./userDashboardArticlesTab/UserDas
 import {DashboardTitle} from "./DashboardTitle";
 
 
+
+
+
 export const UserDashboardPage = (props) => {
 
     const topMenuTitles = ["Dashboard", "Articles", "Messages", "Comments", "Likes", "Settings"];
@@ -18,12 +21,9 @@ export const UserDashboardPage = (props) => {
     const [httpError, setHttpError] = useState(null);
     const [titles, setTitles] = useState(topMenuTitles);
 
-    const [dashboardIsActive, setDashboardIsActive] = useState(false);
-    const [articlesIsActive, setArticlesIsActive] = useState(false);
-    const [messagesIsActive, setMessagesIsActive] = useState(false);
-    const [commentsIsActive, setCommentsIsActive] = useState(false);
-
+    const [clickedTitle, setClickedTitle] = useState("Dashboard");
     const userId = (window.location.pathname).split("/")[2];
+
 
     useEffect(() => {
         const token = getToken();
@@ -78,6 +78,10 @@ export const UserDashboardPage = (props) => {
         )
     }
 
+    const handleClick = (value: string) => {
+        setClickedTitle(value);
+    }
+
 
     return (
         <div>
@@ -87,20 +91,17 @@ export const UserDashboardPage = (props) => {
                 </div>
                 <div className="col-md-8 ">
                     <div className="row" style={{height: '8vh'}}>
-                        {titles.map(title => <DashboardTopLinkComponent title={title} key={title}/>)}
+                        {titles.map(title => <DashboardTopLinkComponent handleClick={handleClick} title={title}
+                                                                        key={title} onClick={handleClick}/>)}
                     </div>
                     <DashboardTitle/>
 
-                    {props.clickedTitle === 'Articles' ?
+                    {clickedTitle === 'Dashboard' ?
                         <DashboardComponent user={user}/>
 
                         :
                         <UserDashboardArticlesComponent user={user}/>
                     }
-
-
-
-
                 </div>
             </div>
         </div>

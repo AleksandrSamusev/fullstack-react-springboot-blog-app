@@ -5,10 +5,10 @@ export const DashboardTopLinkComponent = (props) => {
 
     const [clicked, setClicked] = useState(false);
 
-    const handleClick = () => {
-        setClicked(!clicked)
+    const handleCl = e => {
+        e.preventDefault();
+        props.handleClick(e.target.id);
     }
-
 
     return (
         <div className={clicked ? "col-2 text-center shadow-lg pt-4" : "col-2 text-center pt-4"}
@@ -17,8 +17,10 @@ export const DashboardTopLinkComponent = (props) => {
                  borderBottomRightRadius: clicked ? '15px' : '',
              }}
         >
-            <Link to='#'
-                  onClick={handleClick}
+            <Link
+                to='#'
+                id={props.title}
+                  onClick={handleCl}
                   style={{
                       fontFamily: 'Roboto',
                       fontSize: '22px',
