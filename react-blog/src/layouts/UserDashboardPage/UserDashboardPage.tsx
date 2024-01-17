@@ -94,7 +94,9 @@ export const UserDashboardPage = (props) => {
                         {titles.map(title => <DashboardTopLinkComponent handleClick={handleClick} title={title}
                                                                         key={title} onClick={handleClick}/>)}
                     </div>
-                    <DashboardTitle/>
+
+
+                    <DashboardTitle title={clickedTitle}/>
 
                     {clickedTitle === 'Dashboard' ?
                         <DashboardComponent user={user}/>

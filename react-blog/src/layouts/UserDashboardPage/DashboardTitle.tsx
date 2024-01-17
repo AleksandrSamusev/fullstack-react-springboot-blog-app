@@ -1,4 +1,4 @@
-export const DashboardTitle = () => {
+export const DashboardTitle = (props) => {
     return (
         <div className="mt-5">
             <h2 className="text-end pe-4"
@@ -7,7 +7,7 @@ export const DashboardTitle = () => {
                     fontSize: '38px',
                     fontWeight: '500'
                 }}>
-                Dashboard</h2>
+                {props.title}</h2>
             <hr/>
         </div>
     );
