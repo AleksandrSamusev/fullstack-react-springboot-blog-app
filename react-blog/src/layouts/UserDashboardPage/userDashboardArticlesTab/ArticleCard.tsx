@@ -1,10 +1,18 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 
 export const ArticleCard = (props) => {
+
+    const navigator = useNavigate();
+    const handleCardClick = () => {
+        navigator("/full-article/" + props.article.articleId);
+    }
+
+
     return (
         <li style={{listStyleType: "none"}}>
             <div className='row mb-5'>
-                <div className='col-8'>
+                <div className='col-8' onClick={handleCardClick}>
                     <img src={props.article.image} alt='default-image'/>
                 </div>
                 <div className='col-4'>

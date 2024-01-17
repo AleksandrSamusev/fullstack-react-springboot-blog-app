@@ -2,6 +2,8 @@ import {useState} from "react";
 import * as React from "react";
 import {registerApiCall} from "../../services/AuthService";
 import {useNavigate} from "react-router-dom";
+import AvatarEditor from "react-avatar-editor";
+import {UploadAvatar} from "./UploadAvatar";
 
 const RegisterComponent = () => {
 
@@ -37,6 +39,7 @@ const RegisterComponent = () => {
                         </div>
                         <div className="card-body">
                             <form>
+                                <UploadAvatar/>
                                 <div className="row mb-3">
                                     <label className="col-md-3 control-label">First name</label>
                                     <div className="col-md-9">
