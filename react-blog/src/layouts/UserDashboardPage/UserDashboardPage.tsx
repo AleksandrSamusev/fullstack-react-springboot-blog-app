@@ -8,6 +8,7 @@ import {getToken} from "../../services/AuthService";
 import {UserDashboardArticlesComponent} from "./userDashboardArticlesTab/UserDashboardArticlesComponent";
 import {DashboardTitle} from "./DashboardTitle";
 import {UserDashboardMessagesComponent} from "./userDashboardMessagesTab/UserDashboardMessagesComponent";
+import {UserDashboardCommentsComponent} from "./userDashboardCommentsTab/UserDashboardCommentsComponent";
 
 
 export const UserDashboardPage = (props) => {
@@ -104,7 +105,14 @@ export const UserDashboardPage = (props) => {
 
                             <UserDashboardArticlesComponent user={user}/>
                             :
-                            <UserDashboardMessagesComponent user={user}/>
+
+                            clickedTitle === 'Messages' ?
+
+                                <UserDashboardMessagesComponent user={user}/>
+                                :
+
+                                <UserDashboardCommentsComponent user={user}/>
+
                     }
 
 
