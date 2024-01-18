@@ -2,7 +2,6 @@ import {useState} from "react";
 import * as React from "react";
 import {registerApiCall} from "../../services/AuthService";
 import {useNavigate} from "react-router-dom";
-import AvatarEditor from "react-avatar-editor";
 import {UploadAvatar} from "./UploadAvatar";
 
 const RegisterComponent = () => {
@@ -13,18 +12,24 @@ const RegisterComponent = () => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('')
     const [birthDate, setBirthDate] = useState('')
+    const [avatar, setAvatar] = useState('')
     const [about, setAbout] = useState('')
 
     const navigator = useNavigate();
 
     function handleRegistrationForm(e) {
         e.preventDefault();
-        const register = {firstName, lastName, username, password, email, birthDate, about}
+        const register = {firstName, lastName, username, password, email, birthDate, avatar, about}
+        console.log(register)
         registerApiCall(register).then(response => {
             navigator("/home")
         }).catch(error => {
             console.error(error);
         })
+    }
+
+    const handleUpload = (value) => {
+        setAvatar(value);
     }
 
     return (
@@ -39,7 +44,7 @@ const RegisterComponent = () => {
                         </div>
                         <div className="card-body">
                             <form>
-                                <UploadAvatar/>
+                                <UploadAvatar handleUpload={handleUpload}/>
                                 <div className="row mb-3">
                                     <label className="col-md-3 control-label">First name</label>
                                     <div className="col-md-9">

@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS users
     password   TEXT        NOT NULL,
     email      VARCHAR(50) NOT NULL UNIQUE,
     birthdate  DATE        NOT NULL,
+    avatar     TEXT,
     about      TEXT CHECK (char_length(about) <= 1000),
     is_banned  BOOLEAN DEFAULT FALSE
 );

@@ -44,6 +44,8 @@ public class UserFullDto {
     @NotNull(message = "User birth date cannot be null")
     private LocalDate birthDate;
 
+    private String avatar;
+
     private Set<Role> roles;
 
     private String about;

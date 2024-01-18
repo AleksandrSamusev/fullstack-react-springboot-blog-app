@@ -42,6 +42,8 @@ public class UserNewDto {
     @Past(message = "Birth date should be in past")
     private LocalDate birthDate;
 
+    private String avatar;
+
     @Length(max = 1000, message = "About should be 1000 char max")
     private String about;
 
