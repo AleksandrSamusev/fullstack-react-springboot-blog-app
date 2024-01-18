@@ -24,8 +24,8 @@ const LoginComponent = () => {
             storeToken(token);
             saveLoggedInUser(userId, usernameOrEmail, role);
            console.log(token)
-            //navigator("/home");
-            //window.location.reload();
+            navigator("/home");
+            window.location.reload();
 
         }).catch(error => {
             console.error(error);

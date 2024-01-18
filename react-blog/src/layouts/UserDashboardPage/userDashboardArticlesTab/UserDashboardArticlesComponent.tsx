@@ -13,7 +13,7 @@ export const UserDashboardArticlesComponent = (props) => {
     return (
         <div className="row">
 
-            <div className="mt-4 " style={{height: '58vh', width: '51vw', overflowY: 'scroll', overflowX: 'hidden'}}>
+            <div className="mt-4 " style={{height: '58vh', width: '63vw', overflowY: 'scroll', overflowX: 'hidden'}}>
                 <ul className="cards">
                     {
                         props.user.articles.map(article => (
@@ -23,7 +23,7 @@ export const UserDashboardArticlesComponent = (props) => {
                     }
                 </ul>
             </div>
-            <div style={{width: '200px', marginLeft: '70px'}}>
+            <div style={{width: '150px'}}>
                <ArticlesCheckboxBlock title={checkBoxTitles[0]} key={checkBoxTitles[0]} options={checkBoxOptionsTop}/>
                <ArticlesCheckboxBlock title={checkBoxTitles[1]} key={checkBoxTitles[1]} options={checkBoxOptionsBottom}/>
             </div>

@@ -47,6 +47,7 @@ export const UserDashboardPage = (props) => {
                 username: responseJson.username,
                 email: responseJson.email,
                 birthDate: responseJson.birthDate,
+                avatar: responseJson.avatar,
                 isBanned: responseJson.isBanned,
                 sentMessages: responseJson.sentMessages,
                 receivedMessages: responseJson.receivedMessages,
@@ -86,10 +87,10 @@ export const UserDashboardPage = (props) => {
     return (
         <div>
             <div className="row mb-5">
-                <div className="col-3">
+                <div className="col-2">
                     <DashboardInfoCard user={user}/>
                 </div>
-                <div className="col-md-8 ">
+                <div className="col-md-9 ">
                     <div className="row" style={{height: '8vh'}}>
                         {titles.map(title => <DashboardTopLinkComponent handleClick={handleClick} title={title}
                                                                         key={title} onClick={handleClick}/>)}
