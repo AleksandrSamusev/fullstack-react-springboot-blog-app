@@ -36,9 +36,11 @@ public class UserMapper {
     }
 
     public static UserShortDto toUserShortDto(User user) {
-        return new UserShortDto(
-                user.getUserId(),
-                user.getUsername());
+        UserShortDto dto = new UserShortDto();
+        dto.setUserId(user.getUserId());
+        dto.setUsername(user.getUsername());
+        dto.setAvatar(user.getAvatar());
+        return dto;
     }
 
     public static User toUser(UserNewDto dto) {
