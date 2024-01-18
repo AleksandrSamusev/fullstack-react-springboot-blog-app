@@ -7,9 +7,7 @@ import {Spinner} from "../utils/Spinner";
 import {getToken} from "../../services/AuthService";
 import {UserDashboardArticlesComponent} from "./userDashboardArticlesTab/UserDashboardArticlesComponent";
 import {DashboardTitle} from "./DashboardTitle";
-
-
-
+import {UserDashboardMessagesComponent} from "./userDashboardMessagesTab/UserDashboardMessagesComponent";
 
 
 export const UserDashboardPage = (props) => {
@@ -95,16 +93,21 @@ export const UserDashboardPage = (props) => {
                         {titles.map(title => <DashboardTopLinkComponent handleClick={handleClick} title={title}
                                                                         key={title} onClick={handleClick}/>)}
                     </div>
-
-
                     <DashboardTitle title={clickedTitle}/>
+
 
                     {clickedTitle === 'Dashboard' ?
                         <DashboardComponent user={user}/>
-
                         :
-                        <UserDashboardArticlesComponent user={user}/>
+
+                        clickedTitle === 'Articles' ?
+
+                            <UserDashboardArticlesComponent user={user}/>
+                            :
+                            <UserDashboardMessagesComponent user={user}/>
                     }
+
+
                 </div>
             </div>
         </div>
