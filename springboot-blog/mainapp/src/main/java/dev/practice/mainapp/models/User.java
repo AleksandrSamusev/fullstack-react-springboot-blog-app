@@ -42,6 +42,9 @@ public class User {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate birthDate;
 
+    @Column(name = "avatar")
+    private String avatar;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"),

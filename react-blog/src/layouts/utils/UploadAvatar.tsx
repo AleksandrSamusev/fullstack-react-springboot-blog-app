@@ -2,23 +2,22 @@ import React, {useEffect, useState} from "react";
 import Avatar from "react-avatar-edit";
 
 
-export const UploadAvatar = () => {
+export const UploadAvatar = (props) => {
 
     const [src, setSrc] = useState('');
-    const [isClicked, setIsClicked] = useState(false);
-    let path = require("../../Images/PublicImages/profile-placeholder-image.jpg");
+    const path = require("../../Images/PublicImages/profile-placeholder-image.jpg");
     const [preview, setPreview] = useState(path);
 
     const onClose = () => {
-        setPreview(preview);
+        props.handleUpload(preview);
     }
 
     const onCrop = view => {
         setPreview(view);
+        props.handleUpload(preview);
     }
 
     useEffect(() => {
-        console.log(preview)
     }, [preview])
 
     return(
@@ -34,7 +33,7 @@ export const UploadAvatar = () => {
             </div>
             <div className="col-5 text-center mt-auto mb-auto">
                 <img src={preview}
-                style={{height: '50%', width: '50%'}} alt="user-photo"/>
+                style={{height: '60%', width: '60%'}} alt="user-photo"/>
             </div>
         </div>
     );

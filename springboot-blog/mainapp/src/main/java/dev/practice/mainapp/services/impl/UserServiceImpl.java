@@ -138,6 +138,9 @@ public class UserServiceImpl implements UserService {
             if (dto.getBirthDate() != null) {
                 user.setBirthDate(dto.getBirthDate());
             }
+            if(dto.getAvatar() != null) {
+                user.setAvatar(dto.getAvatar());
+            }
             if (dto.getAbout() != null && !dto.getAbout().isBlank()) {
                 user.setAbout(dto.getAbout());
             }

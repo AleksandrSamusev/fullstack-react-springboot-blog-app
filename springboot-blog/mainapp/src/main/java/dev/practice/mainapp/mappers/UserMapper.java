@@ -22,6 +22,7 @@ public class UserMapper {
         dto.setEmail(user.getEmail());
         dto.setUsername(user.getUsername());
         dto.setBirthDate(user.getBirthDate());
+        dto.setAvatar(user.getAvatar());
         dto.setRoles(user.getRoles());
         dto.setIsBanned(user.getIsBanned());
         dto.setComments(user.getComments().stream().map(CommentMapper::toCommentShortDto).collect(Collectors.toSet()));
@@ -47,6 +48,7 @@ public class UserMapper {
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
         user.setBirthDate(dto.getBirthDate());
+        user.setAvatar(dto.getAvatar());
         user.setAbout(dto.getAbout());
         user.setSentMessages(new HashSet<>());
         user.setReceivedMessages(new HashSet<>());
