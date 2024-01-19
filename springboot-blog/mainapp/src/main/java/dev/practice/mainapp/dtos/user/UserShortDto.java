@@ -19,4 +19,6 @@ public class UserShortDto {
     @NotBlank(message = "Username cannot be blank")
     private String username;
 
+    private String avatar;
+
 }

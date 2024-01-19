@@ -1,13 +1,17 @@
-import {DashboardComponent} from "../utils/DashboardComponent";
+import {DashboardComponent} from "./userDashboardMainTab/DashboardComponent";
 import React, {useEffect, useState} from "react";
 import UserModel from "../../models/UserModel";
-import {DashboardTopLinkComponent} from "../utils/DashboardTopLinkComponent";
-import {DashboardInfoCard} from "../utils/DashboardInfoCard";
+import {DashboardTopLinkComponent} from "./DashboardTopLinkComponent";
+import {DashboardInfoCard} from "./DashboardInfoCard";
 import {Spinner} from "../utils/Spinner";
 import {getToken} from "../../services/AuthService";
+import {UserDashboardArticlesComponent} from "./userDashboardArticlesTab/UserDashboardArticlesComponent";
+import {DashboardTitle} from "./DashboardTitle";
+import {UserDashboardMessagesComponent} from "./userDashboardMessagesTab/UserDashboardMessagesComponent";
+import {UserDashboardCommentsComponent} from "./userDashboardCommentsTab/UserDashboardCommentsComponent";
 
 
-export const UserDashboardPage = () => {
+export const UserDashboardPage = (props) => {
 
     const topMenuTitles = ["Dashboard", "Articles", "Messages", "Comments", "Likes", "Settings"];
 
@@ -16,12 +20,14 @@ export const UserDashboardPage = () => {
     const [httpError, setHttpError] = useState(null);
     const [titles, setTitles] = useState(topMenuTitles);
 
+    const [clickedTitle, setClickedTitle] = useState("Dashboard");
     const userId = (window.location.pathname).split("/")[2];
+
 
     useEffect(() => {
         const token = getToken();
         console.log(token)
-        const headers = { 'Authorization': `${token}`};
+        const headers = {'Authorization': `${token}`};
         console.log(headers)
 
         const fetchUser = async () => {
@@ -40,6 +46,7 @@ export const UserDashboardPage = () => {
                 username: responseJson.username,
                 email: responseJson.email,
                 birthDate: responseJson.birthDate,
+                avatar: responseJson.avatar,
                 isBanned: responseJson.isBanned,
                 sentMessages: responseJson.sentMessages,
                 receivedMessages: responseJson.receivedMessages,
@@ -71,17 +78,44 @@ export const UserDashboardPage = () => {
         )
     }
 
+    const handleClick = (value: string) => {
+        setClickedTitle(value);
+    }
+
+
     return (
         <div>
             <div className="row mb-5">
-                <div className="col-3">
+                <div className="col-2">
                     <DashboardInfoCard user={user}/>
                 </div>
-                <div className="col-md-8 ">
+                <div className="col-md-9 ">
                     <div className="row" style={{height: '8vh'}}>
-                        {titles.map(title => <DashboardTopLinkComponent title={title} key={title}/>)}
+                        {titles.map(title => <DashboardTopLinkComponent handleClick={handleClick} title={title}
+                                                                        key={title} onClick={handleClick}/>)}
                     </div>
-                    <DashboardComponent user={user}/>
+                    <DashboardTitle title={clickedTitle}/>
+
+
+                    {clickedTitle === 'Dashboard' ?
+                        <DashboardComponent user={user}/>
+                        :
+
+                        clickedTitle === 'Articles' ?
+
+                            <UserDashboardArticlesComponent user={user}/>
+                            :
+
+                            clickedTitle === 'Messages' ?
+
+                                <UserDashboardMessagesComponent user={user}/>
+                                :
+
+                                <UserDashboardCommentsComponent user={user}/>
+
+                    }
+
+
                 </div>
             </div>
         </div>

@@ -17,22 +17,24 @@ import java.time.LocalDate;
 public class UserUpdateDto {
 
     @Length(max = 50)
-    String firstName;
+    private String firstName;
 
     @Length(max = 50)
-    String lastName;
+    private String lastName;
 
     @Length(max = 50)
-    String username;
+    private String username;
 
-    String password;
+    private String password;
 
     @Email
     @Length(max = 50)
-    String email;
+    private String email;
 
     @Past
-    LocalDate birthDate;
+    private LocalDate birthDate;
+
+    private String avatar;
 
     @Length(max = 1000)
     String about;
