@@ -12,12 +12,12 @@ export const DashboardInfoCard = (props) => {
                 :
                 <img src={props.user.avatar} alt="user-avatar"
                      className="card-img-top shadow-lg"
-                     style={{borderRadius: '350px', scale: '65%', border: '1px solid black'}}/>
+                     style={{borderRadius: '350px', scale: '65%', border: '1px solid #D8D8D8'}}/>
 
             }
 
             <div className="card-body pt-0">
-                <h6 className="card-title px-5">{props.user.about}</h6>
+                <h6 className="card-title">{props.user.about}</h6>
 
             </div>
             <DashboardInfoCardParams user={props.user}/>
