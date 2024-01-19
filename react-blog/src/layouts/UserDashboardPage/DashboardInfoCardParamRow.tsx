@@ -2,7 +2,7 @@ export const DashboardInfoCardParamRow = (props) => {
     return (
         <li className="list-group-item" style={{border: 'none'}}>
             <div className="row">
-                <div className="col-6" style={{paddingLeft: '30px'}}>
+                <div className="col-6" style={{paddingLeft: '10px'}}>
                     <span>{props.name}</span>
                 </div>
                 <div className="col-6 px-0">

@@ -23,7 +23,7 @@ export const UserDashboardArticlesComponent = (props) => {
                     }
                 </ul>
             </div>
-            <div style={{width: '150px'}}>
+            <div >
                <ArticlesCheckboxBlock title={checkBoxTitles[0]} key={checkBoxTitles[0]} options={checkBoxOptionsTop}/>
                <ArticlesCheckboxBlock title={checkBoxTitles[1]} key={checkBoxTitles[1]} options={checkBoxOptionsBottom}/>
             </div>

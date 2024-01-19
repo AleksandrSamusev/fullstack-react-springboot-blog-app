@@ -6,11 +6,14 @@ export const ArticlesCheckboxBlock = (props) => {
 
     return (
 
-            <div className="px-4 mt-5" style={{width:'140px'}}>
+            <div className="mt-5" style={{width:'140px'}}>
                 <ArticleCheckboxBlockTitle title={props.title}/>
-                {(props.options).map(option => (
-                    <ArticleCheckboxInput option = {option}/>
-                ))}
+                <div className='mx-3'>
+                    {(props.options).map(option => (
+                        <ArticleCheckboxInput option = {option}/>
+                    ))}
+                </div>
+
             </div>
 
     );
