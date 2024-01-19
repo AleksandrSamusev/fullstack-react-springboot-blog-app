@@ -23,5 +23,5 @@ public interface UserService {
 
     UserFullDto updateUser(Long userId, UserUpdateDto dto, String login);
 
-    UserFullDto changeRole(Long userId, String role);
+    UserFullDto changeRole(Long userId, String role, String login);
 }

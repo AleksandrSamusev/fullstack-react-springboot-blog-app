@@ -72,9 +72,9 @@ export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }>
                         <h4 className="mb-3 fw-bold" style={{fontFamily: 'Arial', fontSize: '26px'}}>
                             {props.article.title}
                         </h4>
-                        {/*                        <h5 className="card-title mb-3 fw-bold">
+                        {<h5 className="card-title mb-3 fw-bold">
                             {props.article.author.username}
-                        </h5>*/}
+                        </h5>}
                         <p className="card-text mb-4"
                            style={{fontFamily: 'Arial', fontSize: '16px', textAlign: 'justify'}}>
                             {cuttedContent()}

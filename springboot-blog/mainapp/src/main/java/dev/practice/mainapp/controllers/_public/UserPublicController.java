@@ -1,6 +1,5 @@
 package dev.practice.mainapp.controllers._public;
 
-import dev.practice.mainapp.dtos.user.UserFullDto;
 import dev.practice.mainapp.dtos.user.UserShortDto;
 import dev.practice.mainapp.services.UserService;
 import lombok.AllArgsConstructor;
@@ -27,11 +26,4 @@ public class UserPublicController {
     public ResponseEntity<UserShortDto> getUserById(@PathVariable Long userId) {
         return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
     }
-
-    @PatchMapping("/users/{userId}/roles")
-    public ResponseEntity<UserFullDto> changeRole(@PathVariable Long userId,
-                                                  @RequestParam String name) {
-        return new ResponseEntity<>(userService.changeRole(userId, name), HttpStatus.OK);
-    }
-
 }

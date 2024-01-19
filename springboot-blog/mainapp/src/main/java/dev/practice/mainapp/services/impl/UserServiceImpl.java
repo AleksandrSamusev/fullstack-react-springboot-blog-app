@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -117,7 +118,7 @@ public class UserServiceImpl implements UserService {
         User requester = validations.checkUserExistsByUsernameOrEmail(login);
         User user = validations.checkUserExist(userId);
 
-        if (userId.equals(requester.getUserId()) || validations.isAdmin(login)) {
+        if (userId.equals(requester.getUserId())) {
             if (dto.getFirstName() != null && !dto.getFirstName().isBlank()) {
                 user.setFirstName(dto.getFirstName());
             }
@@ -153,16 +154,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserFullDto changeRole(Long userId, String roleName) {
+    public UserFullDto changeRole(Long userId, String roleName, String login) {
+        validations.checkUserExistsByUsernameOrEmail(login);
         User user = validations.checkUserExist(userId);
-        Optional<Role> role = roleRepository.findByName(roleName);
-        if (role.isPresent()) {
-            user.getRoles().add(role.get());
+
+
+        if (validations.isAdmin(login)) {
+            Optional<Role> role = roleRepository.findByName(roleName);
+
+            if (role.isPresent()) {
+                if (role.get().getName().equals("ROLE_USER") && user.getRoles().size() == 2) {
+                    user.getRoles().removeIf(r -> !r.getRoleId().equals(role.get().getRoleId()));
+                } else {
+                    user.getRoles().add(role.get());
+                }
+            } else {
+                throw new ResourceNotFoundException("Role with given name: '" + roleName + "' not found");
+            }
+            User savedUser = userRepository.save(user);
+            log.info("Set new role: {} to user with ID: {}", roleName, userId);
+            return UserMapper.toUserFullDto(savedUser);
         } else {
-            throw new ResourceNotFoundException("Role with given name: '" + roleName + "' not found");
+            throw new ActionForbiddenException("Action forbidden for current user");
         }
-        User savedUser = userRepository.save(user);
-        log.info("Set new role: {} to user with ID: {}", roleName, userId);
-        return UserMapper.toUserFullDto(savedUser);
     }
 }

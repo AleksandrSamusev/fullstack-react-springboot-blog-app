@@ -97,6 +97,7 @@ public class AuthServiceImpl implements AuthService {
         jwtAuthResponse.setAccessToken(token);
         userOptional.ifPresent(user -> jwtAuthResponse.setUserId(user.getUserId().toString()));
 
+        log.info(token);
         return jwtAuthResponse;
     }
 }

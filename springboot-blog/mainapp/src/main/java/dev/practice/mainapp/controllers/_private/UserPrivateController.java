@@ -22,13 +22,6 @@ public class UserPrivateController {
     private final UserService userService;
 
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-    @GetMapping("/users")
-    public ResponseEntity<List<UserFullDto>> getAllUsers(
-            @AuthenticationPrincipal UserDetails userDetails) {
-        return new ResponseEntity<>(userService.getAllUsers(userDetails.getUsername()), HttpStatus.OK);
-    }
-
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PatchMapping("/users/{userId}")
     public ResponseEntity<UserFullDto> updateUser(@PathVariable Long userId,
                                                   @Valid @RequestBody UserUpdateDto dto,

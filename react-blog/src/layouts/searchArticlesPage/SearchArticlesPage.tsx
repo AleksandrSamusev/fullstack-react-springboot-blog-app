@@ -19,9 +19,6 @@ export const SearchArticlesPage = (props) => {
     const [searchUrl, setSearchUrl] = useState('');
 
     useEffect(() => {
-
-
-
         const fetchArticles = async () => {
             const baseUrl: string = "http://localhost:8080/api/v1/public/rest/articles";
 
@@ -50,7 +47,7 @@ export const SearchArticlesPage = (props) => {
                     title: responseData[key].title,
                     content: responseData[key].content,
                     image: responseData[key].image,
-                    /*author: responseData[key].author,*/
+                    author: responseData[key].author,
                     published: responseData[key].published,
                     likes: responseData[key].likes,
                     views: responseData[key].views
