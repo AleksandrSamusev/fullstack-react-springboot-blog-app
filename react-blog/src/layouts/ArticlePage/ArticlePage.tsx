@@ -69,6 +69,8 @@ export const ArticlePage = () => {
                     comment: responseData[key].comment,
                     created: responseData[key].created,
                     articleId: responseData[key].articleId,
+                    articleTitle: responseData[key].articleTitle,
+                    articleImage: responseData[key].articleImage,
                     commentAuthor: responseData[key].commentAuthor
                 });
             }
@@ -104,9 +106,9 @@ export const ArticlePage = () => {
                 <div className="row mt-5">
                     <div className="col-sm-2 col-md-6">
                         {article?.image ?
-                            <img className="shadow-lg" src={article?.image} alt="article"/>
+                            <img className="shadow-lg img-fluid" src={article?.image} alt="article"/>
                             :
-                            <img src={require('../../Images/ArticlesImages/default.png')} alt="article"/>
+                            <img className="img-fluid" src={require('../../Images/ArticlesImages/default.png')} alt="article"/>
                         }
                     </div>
                     <div className="col-4 col-md-6 container">
