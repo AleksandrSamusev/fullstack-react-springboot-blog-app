@@ -13,7 +13,7 @@ export const ArticleCard = (props) => {
         <li style={{listStyleType: "none"}}>
             <div className='row mb-5'>
                 <div className='col-8' onClick={handleCardClick}>
-                    <img src={props.article.image} alt='default-image'/>
+                    <img className="img-fluid2" src={props.article.image} alt='default-image'/>
                 </div>
                 <div className='col-4'>
                     <div style={{

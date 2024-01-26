@@ -27,6 +27,11 @@ public class CommentShortDto {
     @NotNull(message = "Article ID cannot be null")
     private Long articleId;
 
+    @NotNull(message = "Article title cannot be null")
+    private String articleTitle;
+
+    private String articleImage;
+
     @NotNull(message = "Comment author ID cannot be null")
     private Long commentAuthorId;
 }
