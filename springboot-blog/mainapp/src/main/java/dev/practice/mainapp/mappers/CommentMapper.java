@@ -24,8 +24,8 @@ public class CommentMapper {
     }
 
     public static CommentShortDto toCommentShortDto(Comment comment) {
-        return new CommentShortDto(
-                comment.getCommentId(),
+        return new CommentShortDto(comment.getCommentId(),
+
                 comment.getComment(),
                 comment.getCreated(),
                 comment.getArticle().getArticleId(),

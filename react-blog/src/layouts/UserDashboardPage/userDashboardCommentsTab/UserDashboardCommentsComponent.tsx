@@ -7,6 +7,7 @@ export const UserDashboardCommentsComponent = (props) => {
     const checkBoxTitles = ['Sort by'];
     const checkBoxOptions = ['article', 'date'];
 
+
     return (
         <div className="row">
             <div className="mt-4" style={{height: '58vh', width: '63vw', overflowY: 'scroll', overflowX: 'hidden'}}>

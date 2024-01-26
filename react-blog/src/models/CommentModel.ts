@@ -8,7 +8,8 @@ class CommentModel {
     commentAuthor: any;
 
     constructor(commentId: number, comment: string, created: string, articleId: number,
-                articleTitle: string, articleImage: string,  commentAuthor: any) {
+                articleTitle: string, articleImage: string, commentAuthor: any) {
+
         this.commentId = commentId;
         this.comment = comment;
         this.created = created;

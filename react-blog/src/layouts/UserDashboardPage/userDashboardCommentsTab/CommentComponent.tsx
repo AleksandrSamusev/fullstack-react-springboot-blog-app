@@ -5,11 +5,14 @@ export const CommentComponent = (props) => {
         <div className="row shadow-lg mb-5 px-3 ">
             <div className="row container-fluid align-items-center mb-3">
                 <div className="col">
+
                     <img className="img-fluid mt-3 shadow"  src={
+
                         props.comment.articleImage === null || props.comment.articleImage === undefined ?
                             require("../../../Images/ArticlesImages/default.png")
                             :
                             `${props.comment.articleImage}`
+
                     } />
                 </div>
                 <div className="col display-5 ">

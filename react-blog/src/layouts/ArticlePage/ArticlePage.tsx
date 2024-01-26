@@ -4,9 +4,6 @@ import articleModel from "../../models/ArticleModel";
 import {Spinner} from "../utils/Spinner";
 import CommentModel from "../../models/CommentModel";
 import {LatestComments} from "./LatestComments";
-import LikeModel from "../../models/LikeModel";
-import tagModel from "../../models/TagModel";
-import likeModel from "../../models/LikeModel";
 
 export const ArticlePage = () => {
 
