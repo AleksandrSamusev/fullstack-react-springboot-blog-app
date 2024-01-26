@@ -6,14 +6,14 @@ export const CommentComponent = (props) => {
             <div className="row">
                 <div className="col">
                     <img src={
-                        props.article.image === null || props.article.image === undefined ?
+                        props.comment.articleImage === null || props.comment.articleImage === undefined ?
                             require("../../../Images/ArticlesImages/default.png")
                             :
-                            `${props.article.image}`
+                            `${props.comment.articleImage}`
                     } style={{height: '100px'}}/>
                 </div>
                 <div className="col">
-                    <p>{props.article.title}</p>
+                    <p>{props.comment.articleTitle}</p>
                 </div>
                 <div className="col">
                     <p>{props.comment.comment}</p>

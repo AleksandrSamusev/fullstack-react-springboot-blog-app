@@ -22,10 +22,13 @@ public class CommentMapper {
     }
 
     public static CommentShortDto toCommentShortDto(Comment comment) {
+
         return new CommentShortDto(comment.getCommentId(),
                 comment.getComment(),
                 comment.getCreated(),
                 comment.getArticle().getArticleId(),
+                comment.getArticle().getTitle(),
+                comment.getArticle().getImage(),
                 comment.getCommentAuthor().getUserId());
     }
 
