@@ -26,7 +26,7 @@ public class StatsClient {
                        RestTemplateBuilder builder) {
 
         this.restTemplate = builder.uriTemplateHandler(new DefaultUriBuilderFactory(serverUrl))
-                .build();
+                .build(); //
     }
 
     public void addStats(StatisticRecord statisticRecord) {
