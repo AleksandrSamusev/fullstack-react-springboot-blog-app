@@ -7,9 +7,10 @@ export const UserDashboardCommentsComponent = (props) => {
     const checkBoxTitles = ['Sort by'];
     const checkBoxOptions = ['article', 'date'];
 
-    return(
+
+    return (
         <div className="row">
-            <div className="mt-4 " style={{height: '58vh', width: '63vw', overflowY: 'scroll', overflowX: 'hidden'}}>
+            <div className="mt-4" style={{height: '58vh', width: '63vw', overflowY: 'scroll', overflowX: 'hidden'}}>
                 {
                     props.user.comments.map(comment => (
                         <CommentComponent comment={comment} user={props.user} key={comment.commentId}/>

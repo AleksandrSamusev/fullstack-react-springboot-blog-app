@@ -9,6 +9,7 @@ class CommentModel {
 
     constructor(commentId: number, comment: string, created: string, articleId: number,
                 articleTitle: string, articleImage: string, commentAuthor: any) {
+
         this.commentId = commentId;
         this.comment = comment;
         this.created = created;
@@ -16,6 +17,7 @@ class CommentModel {
         this.articleTitle = articleTitle;
         this.articleImage = articleImage;
         this.commentAuthor = commentAuthor;
+
     }
 }
 

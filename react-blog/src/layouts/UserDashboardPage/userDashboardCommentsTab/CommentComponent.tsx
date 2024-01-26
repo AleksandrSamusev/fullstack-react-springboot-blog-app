@@ -2,17 +2,20 @@ import React from "react";
 
 export const CommentComponent = (props) => {
     return (
-        <div className="row mb-5 px-3">
-            <div className="row">
+        <div className="row shadow-lg mb-5 px-3 ">
+            <div className="row container-fluid align-items-center mb-3">
                 <div className="col">
-                    <img src={
+
+                    <img className="img-fluid mt-3 shadow"  src={
+
                         props.comment.articleImage === null || props.comment.articleImage === undefined ?
                             require("../../../Images/ArticlesImages/default.png")
                             :
                             `${props.comment.articleImage}`
-                    } style={{height: '100px'}}/>
+
+                    } />
                 </div>
-                <div className="col">
+                <div className="col display-5 ">
                     <p>{props.comment.articleTitle}</p>
                 </div>
                 <div className="col">
@@ -20,7 +23,7 @@ export const CommentComponent = (props) => {
                 </div>
 
             </div>
-            <div className="row">
+            <div className="row d-flex align-items-center mb-3">
                 <div className="col">
                     <img src={
                         props.user.avatar === null || props.user.avatar === undefined ?

@@ -12,18 +12,20 @@ import java.time.LocalDateTime;
 public class CommentMapper {
 
     public static CommentFullDto toCommentFullDto(Comment comment) {
-        return new CommentFullDto(
-                comment.getCommentId(),
-                comment.getComment(),
-                comment.getCreated(),
-                comment.getArticle().getArticleId(),
-                UserMapper.toUserShortDto(comment.getCommentAuthor())
-        );
+
+        CommentFullDto fullDto = new CommentFullDto();
+        fullDto.setCommentId(comment.getCommentId());
+        fullDto.setComment(comment.getComment());
+        fullDto.setCreated(comment.getCreated());
+        fullDto.setArticleId(comment.getArticle().getArticleId());
+        fullDto.setArticleTitle(comment.getArticle().getTitle());
+        fullDto.setArticleImage(comment.getArticle().getImage());
+        return fullDto;
     }
 
     public static CommentShortDto toCommentShortDto(Comment comment) {
-
         return new CommentShortDto(comment.getCommentId(),
+
                 comment.getComment(),
                 comment.getCreated(),
                 comment.getArticle().getArticleId(),

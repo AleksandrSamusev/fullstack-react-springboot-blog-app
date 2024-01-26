@@ -1,6 +1,7 @@
 package dev.practice.mainapp.dtos.comment;
 
 import dev.practice.mainapp.dtos.user.UserShortDto;
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,11 @@ public class CommentFullDto {
 
     @NotNull(message = "Article ID cannot be null")
     private Long articleId;
+
+    @NotNull(message = "Article title cannot be null")
+    private String articleTitle;
+
+    private String articleImage;
 
     @NotNull(message = "Comment author cannot be null")
     private UserShortDto commentAuthor;
