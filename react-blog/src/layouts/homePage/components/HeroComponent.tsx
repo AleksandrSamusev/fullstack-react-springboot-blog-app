@@ -1,7 +1,7 @@
 export const HeroComponent = () => {
     return (
-        <div>
-            <div className="d-none d-lg-block shadow-lg">
+        <div className="mt-5">
+            <div className="d-none d-lg-block ">
                 <div className="row g-0 mt-5">
                     <div className="col-sm-6 col-md-6">
                         <div>
@@ -10,8 +10,8 @@ export const HeroComponent = () => {
                     </div>
                     <div className="col-4 col-md-4 container d-flex justify-content-center align-items-center">
                         <div className="ml-2">
-                            <h1 style={{fontFamily: 'Arial', fontSize: '48px'}} >What have you been reading?</h1>
-                            <p className="lead mt-4" style={{fontFamily: "Arial", fontSize: '18px', opacity: 0.7}}>
+                            <h1>What have you been reading?</h1>
+                            <p className="lead mt-4">
                                 We would love to know what you have been reading.
                                 Whether it is to learn new skill or grow within one.
                                 We will be able to provide top content for you.
@@ -24,8 +24,8 @@ export const HeroComponent = () => {
                     <div className="col-4 col-md-4 container d-flex justify-content-center
                                     align-items-center">
                         <div className="ml-2">
-                            <h1 style={{fontFamily: 'Arial', fontSize: '48px'}}>Our collection is always changing!</h1>
-                            <p className="lead mt-4" style={{fontFamily: "Arial", fontSize: '18px', opacity: 0.7}}>
+                            <h1>Our collection is always changing!</h1>
+                            <p className="lead mt-4" >
                                 Try to check in daily as our collection is always changing!
                                 We work non-stop to provide the most accurate articles selection possible
                                 for our visitors. We are diligent about article selection and our articles
@@ -56,7 +56,7 @@ export const HeroComponent = () => {
                                     Whether it is to learn new skill or grow within one.
                                     We will be able to provide top content for you.
                                 </p>
-                                <a className="btn main-color btn-lg text-white" href="#">Sign In</a>
+                                <a className="btn main-color btn-lg text-white mb-5" href="#">Sign In</a>
                             </div>
                         </div>
                         <div className="m-2">

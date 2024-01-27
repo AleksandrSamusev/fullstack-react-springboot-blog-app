@@ -21,11 +21,10 @@ export const SearchArticlesPage = (props) => {
     useEffect(() => {
 
 
-
         const fetchArticles = async () => {
             const baseUrl: string = "http://localhost:8080/api/v1/public/rest/articles";
 
-            let url: string = '';
+            let url: string;
             if (searchUrl === '') {
                 url = `${baseUrl}?sort=published,desc&page=${currentPage - 1}&size=${articlesPerPage}`;
             } else {
@@ -91,17 +90,6 @@ export const SearchArticlesPage = (props) => {
         }
     }
 
-/*    const searchKeydownHandleChange = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        setCurrentPage(1);
-        if (event.key === 'Enter') {
-            if (search === '') {
-                setSearchUrl('');
-            } else {
-                setSearchUrl(`/search/findByText?text=${search}&page=<pageNumber>&size=${articlesPerPage}`);
-            }
-        }
-    }*/
-
     const indexOfLastArticle: number = currentPage * articlesPerPage;
     const indexOfFirstArticle: number = indexOfLastArticle - articlesPerPage;
     let lastItem = articlesPerPage * currentPage <= totalAmountOfArticles ?
@@ -115,85 +103,47 @@ export const SearchArticlesPage = (props) => {
     }
 
     return (
-        <div>
             <div className="container">
-                <div>
-                    <div className="row mt-5">
-                        <div className="col-6">
-                            <div className="d-flex">
-                                <input className="form-control me-2" type="search"
-                                       placeholder="Search" aria-labelledby="Search"
-                                       onChange={e => setSearch(e.target.value)}
-                                       /*onKeyDown={searchKeydownHandleChange}*//>
-                                <button className="btn btn-outline-success" onClick={() => searchHandleChange()}>
-                                    Search
-                                </button>
-                            </div>
-                        </div>
-                        <div className="col-4">
-                            <div className="dropdown">
-                                <button className="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Category
-                                </button>
-                                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            All
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            cat_1
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            cat_2
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            cat_3
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a className="dropdown-item" href="#">
-                                            cat_4
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <div className="row mt-5">
+                    <div className="col-lg-6 d-flex">
+                        <input className="form-control me-2" type="search"
+                               placeholder="Search" aria-labelledby="Search"
+                               onChange={e => setSearch(e.target.value)}/>
+                        <button className="btn btn-outline-success" onClick={() => searchHandleChange()}>Search</button>
                     </div>
-                    {totalAmountOfArticles > 0 ?
-                        <>
-                            <div className="mt-3">
+                </div>
+                {totalAmountOfArticles > 0 ?
+                    <>
+                        <div className="row mt-3">
+                            <div className="col-lg-6 d-flex">
                                 <h5>Number of results: ({totalAmountOfArticles})</h5>
                             </div>
-                            <p>
-                                {indexOfFirstArticle + 1} to {lastItem} of {totalAmountOfArticles} items:
-                            </p>
-                            {articles.map(article => (
-                                <SearchArticle article={article}
-                                               key={article.articleId}
-                                               changeSearchUrl={changeSearchUrl} />
-                            ))}
-                        </>
-                        :
-                        <div className="m-5">
-                            <h3>
-                                Cant find what you are looking for?
-                            </h3>
-                            <a type="button" href="#" className="btn main-color btn-md px-4 me-md-2
-                            fw-bold text-white">Library services</a>
                         </div>
-                    }
-                    {totalPages > 1 &&
-                        <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate}/>
-                    }
-                </div>
+                        <div className="row ">
+                            <div className="col-lg-6 d-flex">
+                                <p>{indexOfFirstArticle + 1} to {lastItem} of {totalAmountOfArticles} items:</p>
+                            </div>
+                        </div>
+                        {articles.map(article => (
+                            <SearchArticle article={article}
+                                           key={article.articleId}
+                                           changeSearchUrl={changeSearchUrl}/>
+                        ))}
+                    </>
+                    :
+                    <div className="m-5">
+                        <h3>
+                            Cant find what you are looking for?
+                        </h3>
+                        <a type="button" href="#" className="btn main-color btn-md px-4 me-md-2
+                            fw-bold text-white">Library services</a>
+                    </div>
+                }
+                {totalPages > 1 &&
+                    <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate}/>
+                }
+
             </div>
-        </div>
+
     );
 }

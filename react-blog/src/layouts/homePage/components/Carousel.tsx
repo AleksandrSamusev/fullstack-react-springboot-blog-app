@@ -16,7 +16,7 @@ export const Carousel = () => {
         const fetchArticles = async () => {
             const baseUrl: string = "http://localhost:8080/api/v1/public/articles";
 
-            const url: string = `${baseUrl}?from=0&size=3`;
+            const url: string = `${baseUrl}?from=3&size=3`;
 
             const response = await fetch(url);
 
@@ -61,6 +61,9 @@ export const Carousel = () => {
             </div>
         )
     }
+
+
+
 
     return (
         <div id="carouselExampleInterval" className="carousel slide shadow-lg"
