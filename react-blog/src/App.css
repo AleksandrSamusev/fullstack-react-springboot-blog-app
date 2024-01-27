@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 :root {
     --mainOpacity: rgba(0, 0, 0, 0.55);
 
@@ -72,6 +77,63 @@
     cursor: default;
 }
 
-.activeDiv {
 
+
+p {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    opacity: 0.7;
 }
+
+h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 30px;
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 40px;
+}
+
+@media screen and (min-width: 1200px ) {
+    p {
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        opacity: 0.7;
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-size: 34px;
+    }
+
+    h1 {
+        font-family: 'Arial', sans-serif;
+        font-size: 44px;
+    }
+}
+
+@media screen and (min-width: 1400px ) {
+    p {
+        font-family: 'Arial', sans-serif;
+        font-size: 18px;
+        opacity: 0.7;
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        font-size: 36px;
+    }
+
+    h1 {
+        font-family: 'Arial', sans-serif;
+        font-size: 48px;
+    }
+}
+
+p.copyright {
+        font-family: 'Arial', sans-serif;
+        font-size: 12px;
+        opacity: 1;
+}
+
