@@ -90,7 +90,7 @@ export const UserDashboardPage = (props) => {
                     <DashboardInfoCard user={user}/>
                 </div>
                 <div className="col-md-9 ">
-                    <div className="row" style={{height: '8vh'}}>
+                    <div className="row">
                         {titles.map(title => <DashboardTopLinkComponent handleClick={handleClick} title={title}
                                                                         key={title} onClick={handleClick}/>)}
                     </div>

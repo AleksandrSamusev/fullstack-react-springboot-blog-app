@@ -72,7 +72,7 @@ const LoginComponent = () => {
                                     </div>
                                 </div>
                                 <div className="form-group mb-3">
-                                    <button className="btn btn-primary"
+                                    <button className="btn main-color text-white"
                                             onClick={(e) => handleLoginForm(e)}
                                     >Submit
                                     </button>

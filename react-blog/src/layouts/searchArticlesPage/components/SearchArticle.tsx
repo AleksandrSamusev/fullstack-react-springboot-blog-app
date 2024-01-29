@@ -66,15 +66,15 @@ export const SearchArticle: React.FC<{ article: ArticleModel, changeSearchUrl }>
                     <h2 className="mb-3">
                         {props.article.title}
                     </h2>
-                    <p className="card-text mb-4">{cuttedContent()}</p>
-                    <div className="row d-flex">
-                        <div className="col justify-content-start align-self-center mb-3">
+                    <p>{cuttedContent()}</p>
+                    <div className="row">
+                        <div className="col d-flex justify-content-start align-self-center  mb-3">
                             <Link className="btn main-color text-white shadow-lg w-auto mb-3"
                                   to={`/full-article/${props.article.articleId}`}>
                                 Go to article
                             </Link>
                         </div>
-                        <div className="col  d-flex align-self-center justify-content-end mb-3">
+                        <div className="col d-flex align-self-center justify-content-end mb-3">
                             {tags.map(tag => (
                                 <TagComponent tag={tag} key={tag.name} changeSearchUrl={props.changeSearchUrl}/>
                             ))}
